@@ -6,6 +6,7 @@ import type { SaveMealState } from "@/app/(app)/meals/actions";
 import type { AnalyzeMealResponse } from "@/app/api/analyze-meal/route";
 import { Button } from "@/components/ui/Button";
 import type { MealAnalysis } from "@/lib/ai/analyzeMeal";
+import { nextClientId } from "@/lib/clientId";
 import { resizeToJpeg } from "@/lib/image/resizeImage";
 import type { MealInput } from "@/lib/validation/meal";
 import { itemValuesFromAnalysis, type MealFormValues } from "./formValues";
@@ -58,26 +59,29 @@ export function PhotoMeal({ action, defaults }: PhotoMealProps) {
 
     const body = new FormData();
     body.append("photo", photo, "meal.jpg");
+    let result: AnalyzeMealResponse;
     try {
       const response = await fetch("/api/analyze-meal", {
         method: "POST",
         body,
         signal: controller.signal,
       });
-      const result = (await response.json()) as AnalyzeMealResponse;
-      if (!result.ok) {
-        setStep({ name: "error", message: result.error });
-      } else if (result.analysis.items.length === 0) {
-        setStep({
-          name: "error",
-          message: result.analysis.notes || "We couldn't find any food in that photo.",
-        });
-      } else {
-        setStep({ name: "confirm", analysis: result.analysis, id: crypto.randomUUID() });
-      }
+      result = (await response.json()) as AnalyzeMealResponse;
     } catch {
       if (controller.signal.aborted) return;
       setStep({ name: "error", message: "Couldn't reach the server. Check your connection." });
+      return;
+    }
+
+    if (!result.ok) {
+      setStep({ name: "error", message: result.error });
+    } else if (result.analysis.items.length === 0) {
+      setStep({
+        name: "error",
+        message: result.analysis.notes || "We couldn't find any food in that photo.",
+      });
+    } else {
+      setStep({ name: "confirm", analysis: result.analysis, id: nextClientId("analysis") });
     }
   }
 
