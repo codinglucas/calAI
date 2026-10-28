@@ -56,8 +56,18 @@ function toMeal(row: MealRow): Meal {
 }
 
 /** Meals eaten on `day` ("YYYY-MM-DD") in the given time zone, oldest first. */
-export async function getMealsForDay(day: string, timeZone: string): Promise<Meal[]> {
-  const { start, end } = dayRangeUtc(day, timeZone);
+export function getMealsForDay(day: string, timeZone: string): Promise<Meal[]> {
+  return getMealsForDays(day, day, timeZone);
+}
+
+/** Meals eaten from `firstDay` through `lastDay` (inclusive) in the zone, oldest first. */
+export async function getMealsForDays(
+  firstDay: string,
+  lastDay: string,
+  timeZone: string,
+): Promise<Meal[]> {
+  const { start } = dayRangeUtc(firstDay, timeZone);
+  const { end } = dayRangeUtc(lastDay, timeZone);
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("meals")

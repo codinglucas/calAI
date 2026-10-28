@@ -123,3 +123,39 @@ export function formatDay(day: string) {
     day: "numeric",
   }).format(new Date(`${day}T12:00:00Z`));
 }
+
+/** e.g. "Tue, Oct 27" for a "YYYY-MM-DD" day. */
+export function formatShortDay(day: string) {
+  return new Intl.DateTimeFormat("en-US", {
+    timeZone: "UTC",
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+  }).format(new Date(`${day}T12:00:00Z`));
+}
+
+/** The day an instant falls on in `timeZone`. */
+export function dayInZone(iso: string | Date, timeZone: string) {
+  return utcToLocalTime(iso, timeZone).slice(0, 10);
+}
+
+/** `day` moved by `days` calendar days (negative goes back). */
+export function addDays(day: string, days: number) {
+  const [year, month, date] = day.split("-").map(Number);
+  return new Date(Date.UTC(year, month - 1, date + days)).toISOString().slice(0, 10);
+}
+
+/** True for a real calendar date in "YYYY-MM-DD" form (rejects "2026-02-30"). */
+export function isDay(value: string) {
+  return /^\d{4}-\d{2}-\d{2}$/.test(value) && addDays(value, 0) === value;
+}
+
+/** Valid IANA time zone name, e.g. "America/New_York". */
+export function isTimeZone(value: string) {
+  try {
+    new Intl.DateTimeFormat("en-US", { timeZone: value });
+    return true;
+  } catch {
+    return false;
+  }
+}
