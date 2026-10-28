@@ -3,6 +3,7 @@
 import { type ReactNode, startTransition, useActionState, useState } from "react";
 import type { SaveMealState } from "@/app/(app)/meals/actions";
 import { Button } from "@/components/ui/Button";
+import { nextClientId } from "@/lib/clientId";
 import { formatKcal, MEAL_TYPE_LABELS, sumNutrients } from "@/lib/nutrition";
 import { type MealInput, type MealItemInput, MEAL_TYPES } from "@/lib/validation/meal";
 import { emptyItem, type ItemValues, type MealFormValues } from "./formValues";
@@ -18,7 +19,7 @@ type MealFormProps = {
 
 // Keys end up in element ids, so initial ones must match between the server
 // render and hydration; only items added later get random keys.
-const withKey = (item: ItemValues, key: string = crypto.randomUUID()): ItemDraft => ({
+const withKey = (item: ItemValues, key: string = nextClientId("item")): ItemDraft => ({
   ...item,
   key,
 });

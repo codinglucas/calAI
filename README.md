@@ -37,6 +37,11 @@ Phone browser                       Next.js on Vercel                     Extern
 - **Data isolation.** Every table has row-level security. Users can only read and write their own `meals`. `meal_items` are authorized through their parent meal's `user_id`.
 - **Days and time zones.** `eaten_at` is stored in UTC. Meals are grouped into days using the time zone saved in the user's profile, not UTC: `lib/dates.ts` turns "today in America/New_York" into a UTC range (DST-aware, using `Intl`), and the meal form's time is read as wall-clock time in that zone.
 - **Atomic saves.** A meal and its items are written by the `create_meal` / `update_meal` Postgres functions in one transaction, so a failed item insert can't leave an empty meal. They run as the calling user, so RLS still applies.
+- **Photo analysis.** `lib/ai/analyzeMeal.ts` holds the prompt, the Zod schema and the retry logic in one place. The schema is sent to the model as its structured-output format, so the reply is JSON in exactly that shape (`items` with name, grams, kcal, macros and a confidence level, plus `notes`). A second, stricter Zod pass rejects out-of-range values. If either check fails the call is retried once, and then the user gets a friendly error and a link to manual entry.
+- **Swappable vision provider.** `AI_PROVIDER` chooses the model behind that prompt and schema. Each adapter in `lib/ai/providers/` turns the same request into one API call:
+  - `anthropic` (default): Claude via the official SDK, model from `ANTHROPIC_MODEL` (default `claude-sonnet-5-5`). If Claude declines a request, the API's server-side fallback retries it on another model within the same call.
+  - `gemini`: Google Gemini's Interactions API over plain `fetch` (no extra package), model from `GEMINI_MODEL` (default `gemini-3.5-flash-lite`, which has free-tier quota on new AI Studio projects). Requests are sent with `store: false` so Google doesn't keep the interaction. On AI Studio's free tier, Google may use the content you send to improve its products; a billing-enabled key opts out.
+- **Photo privacy.** The browser scales the photo to at most 1024px and re-encodes it as JPEG before upload. `/api/analyze-meal` checks the session, reads the file into memory, sends it to the vision model as base64 and returns the estimate. Nothing writes the image to disk, the database or storage, and it is never logged. The confirm screen shows a local preview from a blob URL that is released when you leave. Only the items you confirm with "Log meal" are saved, each marked `source: ai` with its confidence.
 - **Secrets.** The Anthropic API key is only read by server code. Only the Supabase URL and anon key are public, which is safe because RLS protects the data.
 
 ## Project structure
@@ -44,14 +49,16 @@ Phone browser                       Next.js on Vercel                     Extern
 ```
 app/
   (auth)/            login, signup, and the auth server actions
-  (app)/             signed-in area: Today, add meal (log/manual), edit meal (meals/[id]/edit)
+  (app)/             signed-in area: Today, photo (log/photo), manual entry (log/manual), edit (meals/[id]/edit)
+  api/analyze-meal/  photo → Claude route (auth-checked, in-memory only)
   auth/callback/     OAuth and email-confirmation code exchange
 components/          UI building blocks (ui/) and feature components (auth/, meals/)
 lib/
   supabase/          browser, server and proxy Supabase clients
   db/                typed queries for profiles and meals (server only)
   validation/        Zod schemas shared by forms and server actions
-  ai/                Claude prompt, Zod output schema and call (Phase 3)
+  ai/                Claude prompt, Zod output schema and call
+  image/             in-browser photo resize
   auth.ts            getCurrentUser / requireUser
   dates.ts           time zone helpers (user's day ↔ UTC)
   nutrition.ts       totals, meal type labels
@@ -68,7 +75,7 @@ proxy.ts             session refresh and route protection
 
 - Node.js 20 or later
 - A free [Supabase](https://supabase.com) project
-- An [Anthropic API key](https://console.anthropic.com) (needed from Phase 3)
+- An [Anthropic API key](https://console.anthropic.com) for photo analysis, or a [Gemini API key](https://aistudio.google.com/apikey) with `AI_PROVIDER=gemini`
 
 ### 2. Install
 
@@ -132,7 +139,7 @@ Open http://localhost:3000. Use your phone on the same network to try the mobile
 
 - [x] **Phase 1:** project setup, Supabase clients, auth (email/password, Google, log out, protected routes), migrations with RLS
 - [x] **Phase 2:** manual food entry and the Today dashboard (meals by type, daily total vs. goal, edit and delete)
-- [ ] **Phase 3:** photo upload → Claude analysis → confirm screen → save (no photo storage)
+- [x] **Phase 3:** photo upload → Claude analysis → confirm screen → save (no photo storage)
 - [ ] **Phase 4:** 30-day history, settings (calorie goal, time zone), installable PWA
 
 **Later:** USDA nutrition database lookup, nutrition-label reading mode, macro goals, tests and CI, and a Python accuracy evaluation in `/eval`.
