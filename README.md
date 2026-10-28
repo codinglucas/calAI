@@ -1,5 +1,7 @@
 # calAI
 
+[![CI](https://github.com/codinglucas/calAI/actions/workflows/ci.yml/badge.svg)](https://github.com/codinglucas/calAI/actions/workflows/ci.yml)
+
 A mobile-first calorie tracker. Take a photo of a meal, a vision LLM (Claude) identifies the foods and estimates portions, calories and macros, you review and edit the result, and it's logged to your day.
 
 **Photos are never stored.** The image is resized in the browser, sent to a server route, forwarded to Claude in memory, and discarded. Only the meal and its items (name, grams, kcal, protein, carbs, fat) are saved.
@@ -142,4 +144,4 @@ Open http://localhost:3000. Use your phone on the same network to try the mobile
 - [x] **Phase 3:** photo upload → Claude analysis → confirm screen → save (no photo storage)
 - [ ] **Phase 4:** 30-day history, settings (calorie goal, time zone), installable PWA
 
-**Later:** USDA nutrition database lookup, nutrition-label reading mode, macro goals, tests and CI, and a Python accuracy evaluation in `/eval`.
+**Later:** USDA nutrition database lookup, nutrition-label reading mode, macro goals, automated tests, and a Python accuracy evaluation in `/eval`.
