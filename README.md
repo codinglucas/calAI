@@ -37,8 +37,11 @@ Phone browser                       Next.js on Vercel                     Extern
 - **Data isolation.** Every table has row-level security. Users can only read and write their own `meals`. `meal_items` are authorized through their parent meal's `user_id`.
 - **Days and time zones.** `eaten_at` is stored in UTC. Meals are grouped into days using the time zone saved in the user's profile, not UTC: `lib/dates.ts` turns "today in America/New_York" into a UTC range (DST-aware, using `Intl`), and the meal form's time is read as wall-clock time in that zone.
 - **Atomic saves.** A meal and its items are written by the `create_meal` / `update_meal` Postgres functions in one transaction, so a failed item insert can't leave an empty meal. They run as the calling user, so RLS still applies.
-- **Photo analysis.** `lib/ai/analyzeMeal.ts` holds the prompt, the Zod schema and the Claude call together. The schema is sent as a structured-output format, so Claude replies with JSON in exactly that shape (`items` with name, grams, kcal, macros and a confidence level, plus `notes`). A second, stricter Zod pass rejects out-of-range values; if either check fails the call is retried once, and then the user gets a friendly error and a link to manual entry. If the model declines a request, the API's server-side fallback retries it on another model within the same call. The model comes from `ANTHROPIC_MODEL` (default `claude-sonnet-5-5`).
-- **Photo privacy.** The browser scales the photo to at most 1024px and re-encodes it as JPEG before upload. `/api/analyze-meal` checks the session, reads the file into memory, sends it to Claude as base64 and returns the estimate. Nothing writes the image to disk, the database or storage, and it is never logged. The confirm screen shows a local preview from a blob URL that is released when you leave. Only the items you confirm with "Log meal" are saved, each marked `source: ai` with its confidence.
+- **Photo analysis.** `lib/ai/analyzeMeal.ts` holds the prompt, the Zod schema and the retry logic in one place. The schema is sent to the model as its structured-output format, so the reply is JSON in exactly that shape (`items` with name, grams, kcal, macros and a confidence level, plus `notes`). A second, stricter Zod pass rejects out-of-range values. If either check fails the call is retried once, and then the user gets a friendly error and a link to manual entry.
+- **Swappable vision provider.** `AI_PROVIDER` chooses the model behind that prompt and schema. Each adapter in `lib/ai/providers/` turns the same request into one API call:
+  - `anthropic` (default): Claude via the official SDK, model from `ANTHROPIC_MODEL` (default `claude-sonnet-5-5`). If Claude declines a request, the API's server-side fallback retries it on another model within the same call.
+  - `gemini`: Google Gemini's Interactions API over plain `fetch` (no extra package), model from `GEMINI_MODEL` (default `gemini-3.8-flash`). Requests are sent with `store: false` so Google doesn't keep the interaction. On AI Studio's free tier, Google may use the content you send to improve its products; a billing-enabled key opts out.
+- **Photo privacy.** The browser scales the photo to at most 1024px and re-encodes it as JPEG before upload. `/api/analyze-meal` checks the session, reads the file into memory, sends it to the vision model as base64 and returns the estimate. Nothing writes the image to disk, the database or storage, and it is never logged. The confirm screen shows a local preview from a blob URL that is released when you leave. Only the items you confirm with "Log meal" are saved, each marked `source: ai` with its confidence.
 - **Secrets.** The Anthropic API key is only read by server code. Only the Supabase URL and anon key are public, which is safe because RLS protects the data.
 
 ## Project structure
@@ -72,7 +75,7 @@ proxy.ts             session refresh and route protection
 
 - Node.js 20 or later
 - A free [Supabase](https://supabase.com) project
-- An [Anthropic API key](https://console.anthropic.com) (for photo analysis)
+- An [Anthropic API key](https://console.anthropic.com) for photo analysis, or a [Gemini API key](https://aistudio.google.com/apikey) with `AI_PROVIDER=gemini`
 
 ### 2. Install
 
