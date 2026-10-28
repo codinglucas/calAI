@@ -16,6 +16,13 @@ export type SaveMealState = {
 
 const mealIdSchema = z.uuid();
 
+// Pages that show meals. They render per request, but the client router keeps
+// a cache of visited pages; this clears it.
+function revalidateMealPages() {
+  revalidatePath("/today");
+  revalidatePath("/history", "layout");
+}
+
 /**
  * Creates a meal (mealId null) or replaces an existing one. Bind the id on the
  * server: `saveMeal.bind(null, id)`.
@@ -46,7 +53,7 @@ export async function saveMeal(
     return { error: "Couldn't save the meal. Please try again." };
   }
 
-  revalidatePath("/today");
+  revalidateMealPages();
   redirect("/today");
 }
 
@@ -56,6 +63,6 @@ export async function deleteMealAction(mealId: string) {
     return;
   }
   await deleteMeal(mealId);
-  revalidatePath("/today");
+  revalidateMealPages();
   redirect("/today");
 }

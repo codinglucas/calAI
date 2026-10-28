@@ -15,6 +15,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: { default: "calAI", template: "%s · calAI" },
   description: "Snap a photo of your meal and log calories and macros in seconds.",
+  applicationName: "calAI",
+  icons: {
+    icon: [{ url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" }],
+    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
+  },
+  // iOS: run full screen when opened from the home screen.
+  appleWebApp: { capable: true, title: "calAI", statusBarStyle: "default" },
 };
 
 export const viewport: Viewport = {

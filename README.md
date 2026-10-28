@@ -44,6 +44,9 @@ Phone browser                       Next.js on Vercel                     Extern
   - `anthropic` (default): Claude via the official SDK, model from `ANTHROPIC_MODEL` (default `claude-sonnet-5-5`). If Claude declines a request, the API's server-side fallback retries it on another model within the same call.
   - `gemini`: Google Gemini's Interactions API over plain `fetch` (no extra package), model from `GEMINI_MODEL` (default `gemini-3.5-flash-lite`, which has free-tier quota on new AI Studio projects). Requests are sent with `store: false` so Google doesn't keep the interaction. On AI Studio's free tier, Google may use the content you send to improve its products; a billing-enabled key opts out.
 - **Photo privacy.** The browser scales the photo to at most 1024px and re-encodes it as JPEG before upload. `/api/analyze-meal` checks the session, reads the file into memory, sends it to the vision model as base64 and returns the estimate. Nothing writes the image to disk, the database or storage, and it is never logged. The confirm screen shows a local preview from a blob URL that is released when you leave. Only the items you confirm with "Log meal" are saved, each marked `source: ai` with its confidence.
+- **History.** `/history` loads the last 30 days of meals in one query (bounded by the user's day boundaries in UTC) and groups them by day in the profile's time zone (`lib/history.ts`), the same way Today does. Days with no meals still appear. Past days are compared with the _current_ goal, since goal changes aren't stored over time.
+- **Settings.** The calorie goal and time zone are validated with Zod on the server (and by the database's check constraints). Changing the time zone regroups past meals by the new zone, since `eaten_at` is stored in UTC.
+- **Installable.** `app/manifest.ts` and the icons in `public/icons/` let browsers install calAI to the home screen; it opens full screen on `/today`. The manifest is excluded from the auth proxy because browsers fetch it without cookies. There's no service worker: the app needs the network anyway, and install doesn't require one.
 - **Secrets.** The Anthropic API key is only read by server code. Only the Supabase URL and anon key are public, which is safe because RLS protects the data.
 
 ## Project structure
@@ -51,16 +54,19 @@ Phone browser                       Next.js on Vercel                     Extern
 ```
 app/
   (auth)/            login, signup, and the auth server actions
-  (app)/             signed-in area: Today, photo (log/photo), manual entry (log/manual), edit (meals/[id]/edit)
-  api/analyze-meal/  photo → Claude route (auth-checked, in-memory only)
+  (app)/             signed-in area: Today, photo (log/photo), manual entry (log/manual),
+                     edit (meals/[id]/edit), history (history, history/[day]), settings
+  api/analyze-meal/  photo → AI route (auth-checked, in-memory only)
+  manifest.ts        web app manifest (installable PWA)
   auth/callback/     OAuth and email-confirmation code exchange
-components/          UI building blocks (ui/) and feature components (auth/, meals/)
+components/          UI building blocks (ui/) and feature components (auth/, meals/, settings/)
 lib/
   supabase/          browser, server and proxy Supabase clients
   db/                typed queries for profiles and meals (server only)
   validation/        Zod schemas shared by forms and server actions
-  ai/                Claude prompt, Zod output schema and call
+  ai/                prompt, Zod output schema, retry logic; providers/ holds the Claude and Gemini adapters
   image/             in-browser photo resize
+  history.ts         per-day totals and the 30-day summary
   auth.ts            getCurrentUser / requireUser
   dates.ts           time zone helpers (user's day ↔ UTC)
   nutrition.ts       totals, meal type labels
@@ -68,6 +74,8 @@ lib/
 types/database.ts    typed Supabase schema
 supabase/migrations/ SQL migrations (tables, RLS, triggers)
 eval/                reserved for a future Python accuracy evaluation
+public/icons/        app icons (regenerate with npm run icons)
+scripts/             generate-icons.mjs
 proxy.ts             session refresh and route protection
 ```
 
@@ -127,21 +135,25 @@ Open http://localhost:3000. Use your phone on the same network to try the mobile
 
 ### Scripts
 
-| Command             | What it does                                    |
-| ------------------- | ----------------------------------------------- |
-| `npm run dev`       | Start the dev server                            |
-| `npm run build`     | Production build                                |
-| `npm run lint`      | ESLint                                          |
-| `npm run typecheck` | TypeScript, no emit                             |
-| `npm run format`    | Prettier (with Tailwind class sorting)          |
-| `npm run db:push`   | Apply migrations to the linked Supabase project |
-| `npm run db:types`  | Regenerate `types/database.ts`                  |
+| Command             | What it does                                                                             |
+| ------------------- | ---------------------------------------------------------------------------------------- |
+| `npm run dev`       | Start the dev server                                                                     |
+| `npm run dev:lan`   | Dev server reachable from a phone on the same Wi-Fi (`http://<your-computer's-IP>:3000`) |
+| `npm run build`     | Production build                                                                         |
+| `npm run lint`      | ESLint                                                                                   |
+| `npm run typecheck` | TypeScript, no emit                                                                      |
+| `npm run format`    | Prettier (with Tailwind class sorting)                                                   |
+| `npm run db:push`   | Apply migrations to the linked Supabase project                                          |
+| `npm run db:types`  | Regenerate `types/database.ts`                                                           |
+| `npm run icons`     | Regenerate the app icons in `public/icons/`                                              |
 
 ## Roadmap
 
 - [x] **Phase 1:** project setup, Supabase clients, auth (email/password, Google, log out, protected routes), migrations with RLS
 - [x] **Phase 2:** manual food entry and the Today dashboard (meals by type, daily total vs. goal, edit and delete)
 - [x] **Phase 3:** photo upload → Claude analysis → confirm screen → save (no photo storage)
-- [ ] **Phase 4:** 30-day history, settings (calorie goal, time zone), installable PWA
+- [x] **Phase 4:** 30-day history, settings (calorie goal, time zone), installable PWA
+
+**Next:** deploy to Vercel.
 
 **Later:** USDA nutrition database lookup, nutrition-label reading mode, macro goals, automated tests, and a Python accuracy evaluation in `/eval`.

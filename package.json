@@ -12,6 +12,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "db:push": "supabase db push",
+    "icons": "node scripts/generate-icons.mjs",
     "db:types": "supabase gen types typescript --linked --schema public > types/database.ts"
   },
   "dependencies": {
