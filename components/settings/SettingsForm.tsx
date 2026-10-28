@@ -35,9 +35,7 @@ export function SettingsForm({ dailyCalorieGoal, timezone, timeZones }: Settings
   }
 
   return (
-    // autoComplete="off" stops browsers restoring an earlier dropdown choice on
-    // reload, which would show a zone other than the saved one.
-    <form onSubmit={handleSubmit} autoComplete="off" className="flex flex-col gap-6">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-6">
       <TextField
         label="Daily calorie goal (kcal)"
         name="daily_calorie_goal"
