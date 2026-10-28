@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import { logOut } from "@/app/(auth)/actions";
+import { BottomNav, NavBar } from "@/components/BottomNav";
 import { Button } from "@/components/ui/Button";
 import { requireUser } from "@/lib/auth";
 
@@ -17,7 +18,14 @@ export default function AppLayout({ children }: LayoutProps<"/">) {
           <UserMenu />
         </Suspense>
       </header>
-      <main className="flex flex-1 flex-col px-5 py-6">{children}</main>
+      {/* Bottom padding keeps content clear of the fixed bottom nav. */}
+      <main className="flex flex-1 flex-col px-5 pt-6 pb-[calc(5rem+env(safe-area-inset-bottom))]">
+        {children}
+      </main>
+      {/* The current path is request data on dynamic routes, so it streams in. */}
+      <Suspense fallback={<NavBar />}>
+        <BottomNav />
+      </Suspense>
     </div>
   );
 }
