@@ -5,7 +5,7 @@ import { ProviderUnavailableError, type VisionProvider } from "./types";
 // Docs: https://ai.google.dev/gemini-api/docs/interactions
 
 const ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/interactions";
-const DEFAULT_MODEL = "gemini-3.8-flash";
+const DEFAULT_MODEL = "gemini-3.5-flash-lite";
 const TIMEOUT_MS = 45_000;
 
 // Error codes the API uses when it blocks a request or its output.
