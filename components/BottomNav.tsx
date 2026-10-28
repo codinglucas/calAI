@@ -5,7 +5,12 @@ import { usePathname } from "next/navigation";
 
 const links = [
   { href: "/today", label: "Today", icon: "M3 12l9-8 9 8M5 10v10h14V10" },
-  { href: "/log/manual", label: "Add meal", icon: "M12 5v14M5 12h14" },
+  {
+    href: "/log/photo",
+    label: "Photo",
+    icon: "M4 8h3l2-3h6l2 3h3v11H4zM12 16.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z",
+  },
+  { href: "/log/manual", label: "Manual", icon: "M12 5v14M5 12h14" },
 ];
 
 /** Highlights the current tab. Render inside <Suspense fallback={<NavBar />}>. */
