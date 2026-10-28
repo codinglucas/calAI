@@ -8,8 +8,6 @@ import { settingsSchema } from "@/lib/validation/profile";
 export type SettingsState = {
   fieldErrors?: Partial<Record<"daily_calorie_goal" | "timezone", string>>;
   error?: string;
-  /** What was typed for the goal, so a rejected value stays in the field. */
-  goalInput?: string;
   /** Set after a successful save, so the form can say so. */
   savedAt?: number;
 };
@@ -25,7 +23,6 @@ export async function saveSettings(
   if (!parsed.success) {
     const { fieldErrors } = z.flattenError(parsed.error);
     return {
-      goalInput: String(formData.get("daily_calorie_goal") ?? ""),
       fieldErrors: {
         daily_calorie_goal: fieldErrors.daily_calorie_goal?.[0],
         timezone: fieldErrors.timezone?.[0],

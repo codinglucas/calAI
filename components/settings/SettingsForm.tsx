@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { startTransition, useActionState, useState } from "react";
 import { saveSettings, type SettingsState } from "@/app/(app)/settings/actions";
 import { Button } from "@/components/ui/Button";
 import { TextField } from "@/components/ui/TextField";
@@ -25,8 +25,17 @@ export function SettingsForm({ dailyCalorieGoal, timezone, timeZones }: Settings
     }
   }
 
+  // Submitting by hand instead of <form action> skips React's automatic form
+  // reset, which put the controlled time zone <select> back on its first
+  // option (Africa/Abidjan) while state still held the real zone.
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    startTransition(() => action(formData));
+  }
+
   return (
-    <form action={action} className="flex flex-col gap-6">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-6">
       <TextField
         label="Daily calorie goal (kcal)"
         name="daily_calorie_goal"
@@ -35,8 +44,7 @@ export function SettingsForm({ dailyCalorieGoal, timezone, timeZones }: Settings
         min={MIN_CALORIE_GOAL}
         max={MAX_CALORIE_GOAL}
         step={10}
-        // React resets the form after each submit; keep a rejected entry visible.
-        defaultValue={state.goalInput ?? dailyCalorieGoal}
+        defaultValue={dailyCalorieGoal}
         error={errors.daily_calorie_goal}
         required
       />
