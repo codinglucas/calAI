@@ -104,6 +104,14 @@ export type Database = {
     };
     Views: { [_ in never]: never };
     Functions: {
+      create_meal: {
+        Args: { p_meal_type: string; p_eaten_at: string; p_items: Json };
+        Returns: string;
+      };
+      update_meal: {
+        Args: { p_meal_id: string; p_meal_type: string; p_eaten_at: string; p_items: Json };
+        Returns: undefined;
+      };
       is_valid_timezone: {
         Args: { tz: string };
         Returns: boolean;
