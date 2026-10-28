@@ -1,15 +1,20 @@
-import Anthropic from "@anthropic-ai/sdk";
-import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod";
 import { z } from "zod";
 import { CONFIDENCE_LEVELS } from "@/lib/validation/meal";
+import { anthropicVision } from "./providers/anthropic";
+import { geminiVision } from "./providers/gemini";
+import { type ImageInput, ProviderUnavailableError, type VisionProvider } from "./providers/types";
 
-// Server-only: reads ANTHROPIC_API_KEY. Import it from route handlers or
-// server actions, never from a client component.
-
-const DEFAULT_MODEL = "claude-sonnet-5-5";
+// Server-only: providers read API keys from the environment. Import it from
+// route handlers or server actions, never from a client component.
 
 export const ANALYZABLE_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"] as const;
-export type AnalyzableImageType = (typeof ANALYZABLE_IMAGE_TYPES)[number];
+export type AnalyzableImageType = ImageInput["mediaType"];
+
+// AI_PROVIDER picks the vision model behind the same prompt and schema.
+const providers: Record<string, VisionProvider> = {
+  anthropic: anthropicVision,
+  gemini: geminiVision,
+};
 
 /** Claude's per-image limit is 5 MB; the browser sends ~1024px JPEGs well under it. */
 export const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
@@ -28,8 +33,8 @@ Put anything the user should know in notes, in one or two short sentences: assum
 
 If the photo shows no food or drink, return an empty items list and say so in notes.`;
 
-// The shape Claude must return. Kept loose (plain numbers) because it also
-// becomes the JSON schema sent to the API; the bounds live in checkedAnalysis.
+// The shape the model must return. Kept loose (plain numbers) because it also
+// becomes the JSON schema sent to the provider; the bounds live in checkedAnalysis.
 const analysisSchema = z.object({
   items: z.array(
     z.object({
@@ -72,65 +77,44 @@ export type AnalyzeMealResult =
   | { ok: true; analysis: MealAnalysis }
   | { ok: false; reason: "invalid_output" | "refused" | "unavailable" };
 
-let client: Anthropic | undefined;
-const getClient = () => (client ??= new Anthropic());
-
 /**
  * Estimates the foods and nutrients in a meal photo. The image only ever
- * lives in memory: it is passed to Claude as base64 and never stored or
+ * lives in memory: it is passed to the model as base64 and never stored or
  * logged. Retries once if the reply doesn't validate.
  */
-export async function analyzeMeal(
-  image: { data: Buffer; mediaType: AnalyzableImageType },
-  attempts = 2,
-): Promise<AnalyzeMealResult> {
-  const base64 = image.data.toString("base64");
-  let reason: "invalid_output" | "refused" = "invalid_output";
+export async function analyzeMeal(image: ImageInput, attempts = 2): Promise<AnalyzeMealResult> {
+  const providerName = process.env.AI_PROVIDER || "anthropic";
+  const provider = providers[providerName];
+  if (!provider) {
+    console.error(`analyzeMeal: unknown AI_PROVIDER "${providerName}"`);
+    return { ok: false, reason: "unavailable" };
+  }
 
+  let reason: "invalid_output" | "refused" = "invalid_output";
   for (let attempt = 1; attempt <= attempts; attempt++) {
     try {
-      const response = await getClient().beta.messages.parse({
-        model: process.env.ANTHROPIC_MODEL || DEFAULT_MODEL,
-        max_tokens: 16_000,
-        // Medium effort keeps the wait short; portion estimates don't gain much
-        // from deeper reasoning.
-        output_config: { effort: "medium", format: zodOutputFormat(analysisSchema) },
-        // If the model declines, the API retries on another model in the same call.
-        betas: ["server-side-fallback-2026-07-01"],
-        fallbacks: "default",
-        system: SYSTEM_PROMPT,
-        messages: [
-          {
-            role: "user",
-            content: [
-              {
-                type: "image",
-                source: { type: "base64", media_type: image.mediaType, data: base64 },
-              },
-              { type: "text", text: "Estimate this meal." },
-            ],
-          },
-        ],
+      const reply = await provider({
+        image,
+        systemPrompt: SYSTEM_PROMPT,
+        userText: "Estimate this meal.",
+        schema: analysisSchema,
       });
-
-      if (response.stop_reason === "refusal") {
-        reason = "refused";
-        continue;
+      if (reply.status === "ok") {
+        const checked = checkedAnalysis.safeParse(reply.output);
+        if (checked.success) {
+          return { ok: true, analysis: checked.data };
+        }
+        reason = "invalid_output";
+      } else {
+        reason = reply.status === "refused" ? "refused" : "invalid_output";
       }
-      const checked = checkedAnalysis.safeParse(response.parsed_output);
-      if (checked.success) {
-        return { ok: true, analysis: checked.data };
-      }
-      reason = "invalid_output";
+      console.error(`analyzeMeal: ${providerName} attempt ${attempt} gave ${reason}`);
     } catch (error) {
-      // The SDK already retried rate limits, 5xx and network errors.
-      if (error instanceof Anthropic.APIError) {
-        console.error(`analyzeMeal: Claude API error ${error.status}: ${error.message}`);
+      if (error instanceof ProviderUnavailableError) {
+        console.error(`analyzeMeal: ${error.message}`);
         return { ok: false, reason: "unavailable" };
       }
-      // Anything else is the SDK failing to parse the reply: try again.
-      console.error("analyzeMeal: could not parse the model's reply");
-      reason = "invalid_output";
+      throw error;
     }
   }
 
