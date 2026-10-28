@@ -35,7 +35,8 @@ Phone browser                       Next.js on Vercel                     Extern
 
 - **Auth.** `@supabase/ssr` keeps the session in cookies. `proxy.ts` (Next 16's replacement for `middleware.ts`) refreshes the session on every request and redirects signed-out visitors to `/login`. Pages and actions also check the user themselves, so data access never relies on the proxy alone.
 - **Data isolation.** Every table has row-level security. Users can only read and write their own `meals`. `meal_items` are authorized through their parent meal's `user_id`.
-- **Days and time zones.** `eaten_at` is stored in UTC. Meals are grouped into days using the time zone saved in the user's profile, not UTC.
+- **Days and time zones.** `eaten_at` is stored in UTC. Meals are grouped into days using the time zone saved in the user's profile, not UTC: `lib/dates.ts` turns "today in America/New_York" into a UTC range (DST-aware, using `Intl`), and the meal form's time is read as wall-clock time in that zone.
+- **Atomic saves.** A meal and its items are written by the `create_meal` / `update_meal` Postgres functions in one transaction, so a failed item insert can't leave an empty meal. They run as the calling user, so RLS still applies.
 - **Secrets.** The Anthropic API key is only read by server code. Only the Supabase URL and anon key are public, which is safe because RLS protects the data.
 
 ## Project structure
@@ -43,14 +44,17 @@ Phone browser                       Next.js on Vercel                     Extern
 ```
 app/
   (auth)/            login, signup, and the auth server actions
-  (app)/             signed-in area (Today, and later History and Settings)
+  (app)/             signed-in area: Today, add meal (log/manual), edit meal (meals/[id]/edit)
   auth/callback/     OAuth and email-confirmation code exchange
-components/          UI building blocks (ui/) and feature components (auth/, …)
+components/          UI building blocks (ui/) and feature components (auth/, meals/)
 lib/
   supabase/          browser, server and proxy Supabase clients
+  db/                typed queries for profiles and meals (server only)
   validation/        Zod schemas shared by forms and server actions
   ai/                Claude prompt, Zod output schema and call (Phase 3)
   auth.ts            getCurrentUser / requireUser
+  dates.ts           time zone helpers (user's day ↔ UTC)
+  nutrition.ts       totals, meal type labels
   env.ts             validated environment variables
 types/database.ts    typed Supabase schema
 supabase/migrations/ SQL migrations (tables, RLS, triggers)
@@ -127,7 +131,7 @@ Open http://localhost:3000. Use your phone on the same network to try the mobile
 ## Roadmap
 
 - [x] **Phase 1:** project setup, Supabase clients, auth (email/password, Google, log out, protected routes), migrations with RLS
-- [ ] **Phase 2:** manual food entry and the Today dashboard (meals by type, daily total vs. goal, edit and delete)
+- [x] **Phase 2:** manual food entry and the Today dashboard (meals by type, daily total vs. goal, edit and delete)
 - [ ] **Phase 3:** photo upload → Claude analysis → confirm screen → save (no photo storage)
 - [ ] **Phase 4:** 30-day history, settings (calorie goal, time zone), installable PWA
 
