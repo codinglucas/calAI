@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/codinglucas/calAI/actions/workflows/ci.yml/badge.svg)](https://github.com/codinglucas/calAI/actions/workflows/ci.yml)
 
+**Live:** [cal-ai-eight-virid.vercel.app](https://cal-ai-eight-virid.vercel.app)
+
 A mobile-first calorie tracker. Take a photo of a meal, a vision LLM (Claude) identifies the foods and estimates portions, calories and macros, you review and edit the result, and it's logged to your day.
 
 **Photos are never stored.** The image is resized in the browser, sent to a server route, forwarded to Claude in memory, and discarded. Only the meal and its items (name, grams, kcal, protein, carbs, fat) are saved.
@@ -168,7 +170,6 @@ Every push to `main` then deploys to production, and every pull request gets a p
 - [x] **Phase 2:** manual food entry and the Today dashboard (meals by type, daily total vs. goal, edit and delete)
 - [x] **Phase 3:** photo upload → Claude analysis → confirm screen → save (no photo storage)
 - [x] **Phase 4:** 30-day history, settings (calorie goal, time zone), installable PWA
-
-**Next:** deploy to Vercel.
+- [x] **Deploy:** production on Vercel, CI on every pull request
 
 **Later:** USDA nutrition database lookup, nutrition-label reading mode, macro goals, automated tests, and a Python accuracy evaluation in `/eval`.
