@@ -39,6 +39,19 @@ export function sumNutrients(
   };
 }
 
+/** Rescales an item's nutrients to a new weight, e.g. from a label's serving to the amount eaten. */
+export function scaleToGrams<T extends Nutrients & { grams: number }>(item: T, grams: number): T {
+  const factor = grams / item.grams;
+  return {
+    ...item,
+    grams,
+    kcal: item.kcal * factor,
+    protein_g: item.protein_g * factor,
+    carbs_g: item.carbs_g * factor,
+    fat_g: item.fat_g * factor,
+  };
+}
+
 /** Best guess at the meal type from the local hour, for new meals. */
 export function mealTypeForHour(hour: number): MealType {
   if (hour >= 4 && hour < 11) return "breakfast";
