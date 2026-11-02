@@ -16,13 +16,14 @@ export type AnalyzeMealResponse =
 const json = (body: AnalyzeMealResponse, status = 200) => Response.json(body, { status });
 
 const errorMessages = {
-  invalid_output: "We couldn't read the estimate for this photo. Try again or enter it manually.",
-  refused: "We can't estimate this photo. Try another one or enter the meal manually.",
+  invalid_output: "We couldn't read the result for this photo. Try again or enter it manually.",
+  refused: "We can't analyze this photo. Try another one or enter the meal manually.",
   unavailable: "Photo analysis isn't available right now. Enter the meal manually or try later.",
 } as const;
 
 /**
- * POST multipart/form-data with a `photo` file. The photo is read into memory,
+ * POST multipart/form-data with a `photo` file and an optional `mode` ("label"
+ * to read a nutrition label, otherwise a meal). The photo is read into memory,
  * sent to Claude, and dropped when the request ends: it is never written to
  * disk, the database or storage, and never logged.
  */
@@ -45,10 +46,13 @@ export async function POST(request: Request) {
     return json({ ok: false, error: "That photo is too large. Try a smaller one." }, 413);
   }
 
-  const result = await analyzeMeal({
-    data: Buffer.from(await photo.arrayBuffer()),
-    mediaType: photo.type as AnalyzableImageType,
-  });
+  const result = await analyzeMeal(
+    {
+      data: Buffer.from(await photo.arrayBuffer()),
+      mediaType: photo.type as AnalyzableImageType,
+    },
+    formData?.get("mode") === "label" ? "label" : "meal",
+  );
 
   if (!result.ok) {
     return json({ ok: false, error: errorMessages[result.reason] }, 502);

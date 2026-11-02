@@ -10,6 +10,9 @@ import { type ImageInput, ProviderUnavailableError, type VisionProvider } from "
 export const ANALYZABLE_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"] as const;
 export type AnalyzableImageType = ImageInput["mediaType"];
 
+/** "meal" estimates a plate of food; "label" reads a nutrition facts label. */
+export type AnalysisMode = "meal" | "label";
+
 // AI_PROVIDER picks the vision model behind the same prompt and schema.
 const providers: Record<string, VisionProvider> = {
   anthropic: anthropicVision,
@@ -32,6 +35,23 @@ Use plates, cutlery, hands and packaging to judge scale. Count cooking oil, dres
 Put anything the user should know in notes, in one or two short sentences: assumptions that change the total (for example "assumed regular, not diet, soda"), or what to check. Leave notes empty when there is nothing worth saying.
 
 If the photo shows no food or drink, return an empty items list and say so in notes.`;
+
+const LABEL_PROMPT = `You read nutrition labels inside a calorie-tracking app. The user sends one photo of the nutrition label on a food package.
+
+Copy the numbers as printed; do not estimate from what the food looks like. Return exactly one item:
+- name: the product name if you can see it, otherwise "Packaged food".
+- grams: the serving size in grams (for drinks, use millilitres as grams). If the label has no serving column, or the serving has no weight, use the amount the printed column refers to, usually 100.
+- kcal, protein_g, carbs_g, fat_g: the values for that amount. Prefer the per-serving column when there is also a per-100 g one. Use total carbohydrate and total fat. If energy is only given in kJ, divide by 4.184. Read "less than 1 g" as 0.5.
+- confidence: "high" when every number is legible, "medium" when one is hard to read or you converted it, "low" when you are mostly guessing.
+
+Put anything the user should know in notes, in one or two short sentences: for example, numbers you couldn't read. Leave notes empty when there is nothing worth saying.
+
+If the photo shows no nutrition label, or it is too blurry to read, return an empty items list and say so in notes.`;
+
+const REQUESTS: Record<AnalysisMode, { systemPrompt: string; userText: string }> = {
+  meal: { systemPrompt: SYSTEM_PROMPT, userText: "Estimate this meal." },
+  label: { systemPrompt: LABEL_PROMPT, userText: "Read this nutrition label." },
+};
 
 // The shape the model must return. Kept loose (plain numbers) because it also
 // becomes the JSON schema sent to the provider; the bounds live in checkedAnalysis.
@@ -77,12 +97,21 @@ export type AnalyzeMealResult =
   | { ok: true; analysis: MealAnalysis }
   | { ok: false; reason: "invalid_output" | "refused" | "unavailable" };
 
+/** The amount eaten is scaled from a label's item, so it needs one with a real weight. */
+const isReadableLabel = ({ items }: MealAnalysis) =>
+  items.length === 0 || (items.length === 1 && items[0].grams > 0);
+
 /**
- * Estimates the foods and nutrients in a meal photo. The image only ever
- * lives in memory: it is passed to the model as base64 and never stored or
- * logged. Retries once if the reply doesn't validate.
+ * Estimates the foods and nutrients in a meal photo, or reads them off a
+ * nutrition label. The image only ever lives in memory: it is passed to the
+ * model as base64 and never stored or logged. Retries once if the reply
+ * doesn't validate.
  */
-export async function analyzeMeal(image: ImageInput, attempts = 2): Promise<AnalyzeMealResult> {
+export async function analyzeMeal(
+  image: ImageInput,
+  mode: AnalysisMode = "meal",
+  attempts = 2,
+): Promise<AnalyzeMealResult> {
   const providerName = process.env.AI_PROVIDER || "anthropic";
   const provider = providers[providerName];
   if (!provider) {
@@ -95,13 +124,12 @@ export async function analyzeMeal(image: ImageInput, attempts = 2): Promise<Anal
     try {
       const reply = await provider({
         image,
-        systemPrompt: SYSTEM_PROMPT,
-        userText: "Estimate this meal.",
+        ...REQUESTS[mode],
         schema: analysisSchema,
       });
       if (reply.status === "ok") {
         const checked = checkedAnalysis.safeParse(reply.output);
-        if (checked.success) {
+        if (checked.success && (mode === "meal" || isReadableLabel(checked.data))) {
           return { ok: true, analysis: checked.data };
         }
         reason = "invalid_output";
