@@ -42,6 +42,7 @@ Phone browser                       Next.js on Vercel                     Extern
 - **Days and time zones.** `eaten_at` is stored in UTC. Meals are grouped into days using the time zone saved in the user's profile, not UTC: `lib/dates.ts` turns "today in America/New_York" into a UTC range (DST-aware, using `Intl`), and the meal form's time is read as wall-clock time in that zone.
 - **Atomic saves.** A meal and its items are written by the `create_meal` / `update_meal` Postgres functions in one transaction, so a failed item insert can't leave an empty meal. They run as the calling user, so RLS still applies.
 - **Photo analysis.** `lib/ai/analyzeMeal.ts` holds the prompt, the Zod schema and the retry logic in one place. The schema is sent to the model as its structured-output format, so the reply is JSON in exactly that shape (`items` with name, grams, kcal, macros and a confidence level, plus `notes`). A second, stricter Zod pass rejects out-of-range values. If either check fails the call is retried once, and then the user gets a friendly error and a link to manual entry.
+- **Nutrition labels.** The photo screen also has a label mode. It uses the same route, schema and checks as meal photos with a different prompt that copies the printed numbers instead of estimating them. Label photos keep more detail (1600px). A label's values are per serving, so the app then asks how much you had and scales them (`scaleToGrams` in `lib/nutrition.ts`) before the usual confirm screen. Label photos are never stored either.
 - **Swappable vision provider.** `AI_PROVIDER` chooses the model behind that prompt and schema. Each adapter in `lib/ai/providers/` turns the same request into one API call:
   - `anthropic` (default): Claude via the official SDK, model from `ANTHROPIC_MODEL` (default `claude-sonnet-5-5`). If Claude declines a request, the API's server-side fallback retries it on another model within the same call.
   - `gemini`: Google Gemini's Interactions API over plain `fetch` (no extra package), model from `GEMINI_MODEL` (default `gemini-3.5-flash-lite`, which has free-tier quota on new AI Studio projects). Requests are sent with `store: false` so Google doesn't keep the interaction. On AI Studio's free tier, Google may use the content you send to improve its products; a billing-enabled key opts out.
@@ -171,5 +172,7 @@ Every push to `main` then deploys to production, and every pull request gets a p
 - [x] **Phase 3:** photo upload → Claude analysis → confirm screen → save (no photo storage)
 - [x] **Phase 4:** 30-day history, settings (calorie goal, time zone), installable PWA
 - [x] **Deploy:** production on Vercel, CI on every pull request
+- [x] **Phase 5:** nutrition label reading
+- [ ] **Phase 6:** macro goals
 
-**Later:** USDA nutrition database lookup, nutrition-label reading mode, macro goals, automated tests, and a Python accuracy evaluation in `/eval`.
+**Later:** USDA nutrition database lookup, automated tests, and a Python accuracy evaluation in `/eval`.
