@@ -213,6 +213,12 @@ function ModeSwitch({
   );
 }
 
+const SERVING_SHORTCUTS = [
+  { label: "½", servings: 0.5 },
+  { label: "1", servings: 1 },
+  { label: "2", servings: 2 },
+];
+
 /** Asks how much was eaten, since a label only gives the values per serving. */
 function LabelAmount({
   label,
@@ -223,7 +229,8 @@ function LabelAmount({
   notes: string;
   onConfirm: (item: AnalyzedItem) => void;
 }) {
-  const [grams, setGrams] = useState(String(Math.round(label.grams)));
+  const servingGrams = (servings: number) => Math.round(label.grams * servings * 10) / 10;
+  const [grams, setGrams] = useState(String(servingGrams(1)));
   const amount = Number(grams);
   const valid = amount > 0 && amount <= 99_999;
   const scaled = scaleToGrams(label, valid ? amount : label.grams);
@@ -240,6 +247,25 @@ function LabelAmount({
         <span className="font-medium">{label.name}:</span> {Math.round(label.kcal)} kcal per{" "}
         {Math.round(label.grams)} g on the label.
       </p>
+      <div role="group" aria-labelledby="serving-shortcuts" className="flex flex-col gap-1.5">
+        <p id="serving-shortcuts" className="text-sm font-medium">
+          Servings ({Math.round(label.grams)} g each)
+        </p>
+        <div className="flex gap-2">
+          {SERVING_SHORTCUTS.map((shortcut) => (
+            <Button
+              key={shortcut.label}
+              type="button"
+              variant="secondary"
+              className="aria-pressed:border-accent aria-pressed:text-accent flex-1"
+              aria-pressed={amount === servingGrams(shortcut.servings)}
+              onClick={() => setGrams(String(servingGrams(shortcut.servings)))}
+            >
+              {shortcut.label}
+            </Button>
+          ))}
+        </div>
+      </div>
       <TextField
         label="How much did you have? (g or ml)"
         name="amount"
