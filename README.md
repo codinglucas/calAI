@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/codinglucas/calAI/actions/workflows/ci.yml/badge.svg)](https://github.com/codinglucas/calAI/actions/workflows/ci.yml)
 
+**Live:** [cal-ai-eight-virid.vercel.app](https://cal-ai-eight-virid.vercel.app)
+
 A mobile-first calorie tracker. Take a photo of a meal, a vision LLM (Claude) identifies the foods and estimates portions, calories and macros, you review and edit the result, and it's logged to your day.
 
 **Photos are never stored.** The image is resized in the browser, sent to a server route, forwarded to Claude in memory, and discarded. Only the meal and its items (name, grams, kcal, protein, carbs, fat) are saved.
@@ -131,7 +133,22 @@ Email confirmation is on by default, so new users must click the link in their i
 npm run dev
 ```
 
-Open http://localhost:3000. Use your phone on the same network to try the mobile layout.
+Open http://localhost:3000. To try it on your phone, run `npm run dev:lan` and open `http://<your-computer's-IP>:3000` on the same Wi-Fi.
+
+### 7. Deploy to Vercel
+
+1. In [Vercel](https://vercel.com/new), import the GitHub repository. Vercel detects Next.js; keep the default build settings.
+2. Before the first deploy, add the environment variables from `.env.example` under **Environment Variables**:
+   - `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `AI_PROVIDER`, plus either `ANTHROPIC_API_KEY` and `ANTHROPIC_MODEL`, or `GEMINI_API_KEY` and `GEMINI_MODEL`
+
+   Only the two `NEXT_PUBLIC_` values reach the browser; the AI keys stay on the server. `NEXT_PUBLIC_` values are baked in at build time, so redeploy after changing them.
+
+3. Deploy, then copy the production URL (e.g. `https://calai.vercel.app`).
+4. In Supabase → **Authentication** → **URL Configuration**, set **Site URL** to the production URL and add `https://<your-domain>/**` to **Redirect URLs**. Keep `http://localhost:3000/**` for local development. Sign-up confirmation emails and Google sign-in only redirect to URLs on this list.
+5. If you use Google sign-in, nothing changes in Google Cloud: its redirect URI is your Supabase callback, not your app.
+
+Every push to `main` then deploys to production, and every pull request gets a preview deployment. Previews have their own URLs, so signing in there needs those URLs on the Supabase redirect list too (a wildcard such as `https://calai-*-<your-vercel-team>.vercel.app/**` covers them).
 
 ### Scripts
 
@@ -153,7 +170,6 @@ Open http://localhost:3000. Use your phone on the same network to try the mobile
 - [x] **Phase 2:** manual food entry and the Today dashboard (meals by type, daily total vs. goal, edit and delete)
 - [x] **Phase 3:** photo upload → Claude analysis → confirm screen → save (no photo storage)
 - [x] **Phase 4:** 30-day history, settings (calorie goal, time zone), installable PWA
-
-**Next:** deploy to Vercel.
+- [x] **Deploy:** production on Vercel, CI on every pull request
 
 **Later:** USDA nutrition database lookup, nutrition-label reading mode, macro goals, automated tests, and a Python accuracy evaluation in `/eval`.
