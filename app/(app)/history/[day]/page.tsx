@@ -42,7 +42,12 @@ async function PastDay({ params }: Pick<PageProps<"/history/[day]">, "params">) 
   return (
     <>
       <h1 className="text-2xl font-semibold">{formatDay(day)}</h1>
-      <DayView meals={meals} goal={profile.dailyCalorieGoal} timeZone={profile.timezone} />
+      <DayView
+        meals={meals}
+        goal={profile.dailyCalorieGoal}
+        macroGoals={profile.macroGoals}
+        timeZone={profile.timezone}
+      />
     </>
   );
 }

@@ -26,7 +26,13 @@ async function Today() {
         <p className="text-muted text-sm">{formatDay(today)}</p>
         <h1 className="text-2xl font-semibold">Today</h1>
       </header>
-      <DayView meals={meals} goal={profile.dailyCalorieGoal} timeZone={profile.timezone} canAdd />
+      <DayView
+        meals={meals}
+        goal={profile.dailyCalorieGoal}
+        macroGoals={profile.macroGoals}
+        timeZone={profile.timezone}
+        canAdd
+      />
     </div>
   );
 }

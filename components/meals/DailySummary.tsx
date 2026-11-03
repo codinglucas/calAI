@@ -1,6 +1,12 @@
-import { formatKcal, type Nutrients } from "@/lib/nutrition";
+import { formatKcal, MACROS, type MacroGoals, type Nutrients } from "@/lib/nutrition";
 
-export function DailySummary({ total, goal }: { total: Nutrients; goal: number }) {
+type DailySummaryProps = {
+  total: Nutrients;
+  goal: number;
+  macroGoals: MacroGoals;
+};
+
+export function DailySummary({ total, goal, macroGoals }: DailySummaryProps) {
   const remaining = goal - total.kcal;
   const percent = Math.min(100, Math.round((total.kcal / goal) * 100));
   const isOver = remaining < 0;
@@ -32,16 +38,37 @@ export function DailySummary({ total, goal }: { total: Nutrients; goal: number }
       </div>
 
       <dl className="mt-4 grid grid-cols-3 gap-2 text-center">
-        {[
-          ["Protein", total.protein_g],
-          ["Carbs", total.carbs_g],
-          ["Fat", total.fat_g],
-        ].map(([label, grams]) => (
-          <div key={label} className="bg-background rounded-xl py-2">
-            <dt className="text-muted text-xs">{label}</dt>
-            <dd className="font-semibold tabular-nums">{grams}g</dd>
-          </div>
-        ))}
+        {MACROS.map(({ key, label, goalKind }) => {
+          const grams = total[key];
+          const macroGoal = macroGoals[key];
+          const isOverLimit = goalKind === "limit" && macroGoal !== null && grams > macroGoal;
+          return (
+            <div key={key} className="bg-background rounded-xl px-2 py-2">
+              <dt className="text-muted text-xs">{label}</dt>
+              <dd className={`font-semibold tabular-nums ${isOverLimit ? "text-danger" : ""}`}>
+                {grams}g
+              </dd>
+              {macroGoal !== null && (
+                <>
+                  <dd className="text-muted text-xs tabular-nums">of {macroGoal}g</dd>
+                  <dd
+                    className="bg-border mt-1.5 h-1 overflow-hidden rounded-full"
+                    role="progressbar"
+                    aria-valuemin={0}
+                    aria-valuemax={macroGoal}
+                    aria-valuenow={grams}
+                    aria-label={`${label} eaten compared with your daily goal`}
+                  >
+                    <div
+                      className={`h-full rounded-full ${isOverLimit ? "bg-danger" : "bg-accent"}`}
+                      style={{ width: `${Math.min(100, Math.round((grams / macroGoal) * 100))}%` }}
+                    />
+                  </dd>
+                </>
+              )}
+            </div>
+          );
+        })}
       </dl>
     </section>
   );
