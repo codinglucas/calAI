@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Suspense } from "react";
 import { SettingsForm } from "@/components/settings/SettingsForm";
 import { getProfile } from "@/lib/db/profile";
@@ -12,6 +13,9 @@ export default function SettingsPage() {
       <Suspense fallback={<div className="bg-border/60 h-64 animate-pulse rounded-2xl" />}>
         <Settings />
       </Suspense>
+      <Link href="/privacy" className="text-muted mt-6 text-center text-sm underline">
+        Privacy Policy
+      </Link>
     </>
   );
 }

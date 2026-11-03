@@ -128,6 +128,7 @@ Email confirmation is on by default, so new users must click the link in their i
 1. In [Google Cloud Console](https://console.cloud.google.com/apis/credentials), create an **OAuth client ID** of type _Web application_.
 2. Under **Authorized redirect URIs**, add `https://<your-project-ref>.supabase.co/auth/v1/callback`.
 3. In Supabase, go to **Authentication → Sign In / Providers → Google**, enable it, and paste the client ID and secret.
+4. On Google's consent screen, set the privacy policy link to `https://<your-domain>/privacy`, a public page in the app.
 
 ### 6. Run
 
