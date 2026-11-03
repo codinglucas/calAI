@@ -67,9 +67,27 @@ export function scaleToGrams<T extends Nutrients & { grams: number }>(item: T, g
   };
 }
 
-/** Calories implied by macro grams, at 4 kcal/g for protein and carbs and 9 for fat. */
+const KCAL_PER_GRAM: Record<MacroKey, number> = { protein_g: 4, carbs_g: 4, fat_g: 9 };
+
+/** Share of calories per macro behind suggested goals. */
+export const SUGGESTED_MACRO_SPLIT: Record<MacroKey, number> = {
+  protein_g: 0.3,
+  carbs_g: 0.45,
+  fat_g: 0.25,
+};
+
+/** Calories implied by macro grams. */
 export const kcalFromMacros = (macros: Record<MacroKey, number>) =>
-  macros.protein_g * 4 + macros.carbs_g * 4 + macros.fat_g * 9;
+  macros.protein_g * KCAL_PER_GRAM.protein_g +
+  macros.carbs_g * KCAL_PER_GRAM.carbs_g +
+  macros.fat_g * KCAL_PER_GRAM.fat_g;
+
+/** Macro goals in whole grams for a calorie goal, using SUGGESTED_MACRO_SPLIT. */
+export function suggestMacros(kcal: number): Record<MacroKey, number> {
+  const grams = (key: MacroKey) =>
+    Math.round((kcal * SUGGESTED_MACRO_SPLIT[key]) / KCAL_PER_GRAM[key]);
+  return { protein_g: grams("protein_g"), carbs_g: grams("carbs_g"), fat_g: grams("fat_g") };
+}
 
 /** Best guess at the meal type from the local hour, for new meals. */
 export function mealTypeForHour(hour: number): MealType {

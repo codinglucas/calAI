@@ -4,7 +4,13 @@ import { startTransition, useActionState, useState } from "react";
 import { saveSettings, type SettingsState } from "@/app/(app)/settings/actions";
 import { Button } from "@/components/ui/Button";
 import { TextField } from "@/components/ui/TextField";
-import { formatKcal, kcalFromMacros, type MacroGoals, type MacroKey } from "@/lib/nutrition";
+import {
+  formatKcal,
+  kcalFromMacros,
+  type MacroGoals,
+  type MacroKey,
+  suggestMacros,
+} from "@/lib/nutrition";
 import {
   MAX_CALORIE_GOAL,
   MAX_MACRO_GOAL,
@@ -17,6 +23,9 @@ const MACRO_FIELDS = [
   { key: "carbs_g", name: "carbs_goal_g", label: "Carbs (g)" },
   { key: "fat_g", name: "fat_goal_g", label: "Fat (g)" },
 ] as const;
+
+// Suggested macros are whole grams, which can move their total by up to 7 kcal.
+const KCAL_ROUNDING_SLACK = 10;
 
 /** How the macro goals compare with the calorie goal; null until all three are set. */
 function macroHint(macros: Record<MacroKey, string>, calorieGoal: string): string | null {
@@ -31,7 +40,7 @@ function macroHint(macros: Record<MacroKey, string>, calorieGoal: string): strin
   const goal = Number(calorieGoal);
   const summary = `Your macro goals add up to ${formatKcal(kcal)} kcal`;
   if (!(goal > 0)) return `${summary}.`;
-  if (kcal === goal) return `${summary}, matching your calorie goal.`;
+  if (Math.abs(kcal - goal) < KCAL_ROUNDING_SLACK) return `${summary}, matching your calorie goal.`;
   const difference = formatKcal(Math.abs(kcal - goal));
   return `${summary}, ${difference} ${kcal > goal ? "over" : "under"} your calorie goal.`;
 }
@@ -59,6 +68,20 @@ export function SettingsForm({
     fat_g: String(macroGoals.fat_g ?? ""),
   });
   const hint = macroHint(macros, calorieGoal);
+
+  const goal = Number(calorieGoal);
+  const suggestion =
+    goal >= MIN_CALORIE_GOAL && goal <= MAX_CALORIE_GOAL ? suggestMacros(goal) : null;
+  const showSuggestion =
+    suggestion && MACRO_FIELDS.some(({ key }) => macros[key] !== String(suggestion[key]));
+
+  function applySuggestion(grams: Record<MacroKey, number>) {
+    setMacros({
+      protein_g: String(grams.protein_g),
+      carbs_g: String(grams.carbs_g),
+      fat_g: String(grams.fat_g),
+    });
+  }
   const errors = state.fieldErrors ?? {};
 
   function applyDeviceZone() {
@@ -115,6 +138,21 @@ export function SettingsForm({
         <p className="text-muted text-sm" aria-live="polite">
           {hint ?? "Leave a macro blank if you don't want a goal for it."}
         </p>
+        {showSuggestion && (
+          <div className="bg-card border-border flex items-center justify-between gap-3 rounded-xl border p-3">
+            <p className="text-sm" aria-live="polite">
+              Suggested for {formatKcal(goal)} kcal: {suggestion.protein_g}g protein,{" "}
+              {suggestion.carbs_g}g carbs, {suggestion.fat_g}g fat
+            </p>
+            <button
+              type="button"
+              onClick={() => applySuggestion(suggestion)}
+              className="text-accent shrink-0 text-sm font-medium"
+            >
+              Use these
+            </button>
+          </div>
+        )}
       </fieldset>
 
       <div className="flex flex-col gap-1.5">
