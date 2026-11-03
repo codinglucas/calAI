@@ -7,6 +7,21 @@ export type Nutrients = {
   fat_g: number;
 };
 
+export type MacroKey = "protein_g" | "carbs_g" | "fat_g";
+
+/** Daily goals in grams; null means no goal for that macro. */
+export type MacroGoals = Record<MacroKey, number | null>;
+
+/**
+ * goalKind "minimum" is a target to reach, so going over is fine; "limit" is a
+ * ceiling, so going over counts as over, like calories do.
+ */
+export const MACROS: { key: MacroKey; label: string; goalKind: "minimum" | "limit" }[] = [
+  { key: "protein_g", label: "Protein", goalKind: "minimum" },
+  { key: "carbs_g", label: "Carbs", goalKind: "limit" },
+  { key: "fat_g", label: "Fat", goalKind: "limit" },
+];
+
 export const MEAL_TYPE_LABELS: Record<MealType, string> = {
   breakfast: "Breakfast",
   lunch: "Lunch",
@@ -51,6 +66,10 @@ export function scaleToGrams<T extends Nutrients & { grams: number }>(item: T, g
     fat_g: item.fat_g * factor,
   };
 }
+
+/** Calories implied by macro grams, at 4 kcal/g for protein and carbs and 9 for fat. */
+export const kcalFromMacros = (macros: Record<MacroKey, number>) =>
+  macros.protein_g * 4 + macros.carbs_g * 4 + macros.fat_g * 9;
 
 /** Best guess at the meal type from the local hour, for new meals. */
 export function mealTypeForHour(hour: number): MealType {
