@@ -96,6 +96,14 @@ export function AuthForm({ mode, next, initialError }: AuthFormProps) {
           {config.switchLabel}
         </Link>
       </p>
+
+      <p className="text-muted text-center text-xs">
+        {mode === "signup" && "By creating an account, you agree to our "}
+        <Link href="/privacy" className="underline">
+          Privacy Policy
+        </Link>
+        {mode === "signup" && "."}
+      </p>
     </div>
   );
 }

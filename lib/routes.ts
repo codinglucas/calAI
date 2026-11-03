@@ -1,7 +1,7 @@
 export const DEFAULT_SIGNED_IN_PATH = "/today";
 
 /** Paths reachable without signing in. Everything else requires a session. */
-const PUBLIC_PATH_PREFIXES = ["/login", "/signup", "/auth/"];
+const PUBLIC_PATH_PREFIXES = ["/login", "/signup", "/auth/", "/privacy"];
 
 export function isPublicPath(pathname: string) {
   return PUBLIC_PATH_PREFIXES.some((prefix) => pathname.startsWith(prefix));
