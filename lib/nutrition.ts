@@ -7,6 +7,21 @@ export type Nutrients = {
   fat_g: number;
 };
 
+export type MacroKey = "protein_g" | "carbs_g" | "fat_g";
+
+/** Daily goals in grams; null means no goal for that macro. */
+export type MacroGoals = Record<MacroKey, number | null>;
+
+/**
+ * goalKind "minimum" is a target to reach, so going over is fine; "limit" is a
+ * ceiling, so going over counts as over, like calories do.
+ */
+export const MACROS: { key: MacroKey; label: string; goalKind: "minimum" | "limit" }[] = [
+  { key: "protein_g", label: "Protein", goalKind: "minimum" },
+  { key: "carbs_g", label: "Carbs", goalKind: "limit" },
+  { key: "fat_g", label: "Fat", goalKind: "limit" },
+];
+
 export const MEAL_TYPE_LABELS: Record<MealType, string> = {
   breakfast: "Breakfast",
   lunch: "Lunch",
@@ -50,6 +65,28 @@ export function scaleToGrams<T extends Nutrients & { grams: number }>(item: T, g
     carbs_g: item.carbs_g * factor,
     fat_g: item.fat_g * factor,
   };
+}
+
+const KCAL_PER_GRAM: Record<MacroKey, number> = { protein_g: 4, carbs_g: 4, fat_g: 9 };
+
+/** Share of calories per macro behind suggested goals. */
+export const SUGGESTED_MACRO_SPLIT: Record<MacroKey, number> = {
+  protein_g: 0.3,
+  carbs_g: 0.45,
+  fat_g: 0.25,
+};
+
+/** Calories implied by macro grams. */
+export const kcalFromMacros = (macros: Record<MacroKey, number>) =>
+  macros.protein_g * KCAL_PER_GRAM.protein_g +
+  macros.carbs_g * KCAL_PER_GRAM.carbs_g +
+  macros.fat_g * KCAL_PER_GRAM.fat_g;
+
+/** Macro goals in whole grams for a calorie goal, using SUGGESTED_MACRO_SPLIT. */
+export function suggestMacros(kcal: number): Record<MacroKey, number> {
+  const grams = (key: MacroKey) =>
+    Math.round((kcal * SUGGESTED_MACRO_SPLIT[key]) / KCAL_PER_GRAM[key]);
+  return { protein_g: grams("protein_g"), carbs_g: grams("carbs_g"), fat_g: grams("fat_g") };
 }
 
 /** Best guess at the meal type from the local hour, for new meals. */

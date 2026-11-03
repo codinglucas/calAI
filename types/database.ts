@@ -84,21 +84,30 @@ export type Database = {
       };
       profiles: {
         Row: {
+          carbs_goal_g: number | null;
           created_at: string;
           daily_calorie_goal: number;
+          fat_goal_g: number | null;
           id: string;
+          protein_goal_g: number | null;
           timezone: string;
         };
         Insert: {
+          carbs_goal_g?: number | null;
           created_at?: string;
           daily_calorie_goal?: number;
+          fat_goal_g?: number | null;
           id: string;
+          protein_goal_g?: number | null;
           timezone?: string;
         };
         Update: {
+          carbs_goal_g?: number | null;
           created_at?: string;
           daily_calorie_goal?: number;
+          fat_goal_g?: number | null;
           id?: string;
+          protein_goal_g?: number | null;
           timezone?: string;
         };
         Relationships: [];

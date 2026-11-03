@@ -28,6 +28,7 @@ async function Settings() {
   return (
     <SettingsForm
       dailyCalorieGoal={profile.dailyCalorieGoal}
+      macroGoals={profile.macroGoals}
       timezone={profile.timezone}
       timeZones={timeZones}
     />

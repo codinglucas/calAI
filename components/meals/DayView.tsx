@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Meal } from "@/lib/db/meals";
-import { formatKcal, MEAL_TYPE_LABELS, sumNutrients } from "@/lib/nutrition";
+import { formatKcal, type MacroGoals, MEAL_TYPE_LABELS, sumNutrients } from "@/lib/nutrition";
 import { MEAL_TYPES } from "@/lib/validation/meal";
 import { DailySummary } from "./DailySummary";
 import { MealCard } from "./MealCard";
@@ -8,18 +8,19 @@ import { MealCard } from "./MealCard";
 type DayViewProps = {
   meals: Meal[];
   goal: number;
+  macroGoals: MacroGoals;
   timeZone: string;
   /** Show "+ Add" links per meal type (only for today: new meals default to now). */
   canAdd?: boolean;
 };
 
 /** A day's total vs. goal, then its meals grouped by meal type. */
-export function DayView({ meals, goal, timeZone, canAdd = false }: DayViewProps) {
+export function DayView({ meals, goal, macroGoals, timeZone, canAdd = false }: DayViewProps) {
   const total = sumNutrients(meals.flatMap((meal) => meal.items));
 
   return (
     <>
-      <DailySummary total={total} goal={goal} />
+      <DailySummary total={total} goal={goal} macroGoals={macroGoals} />
 
       {MEAL_TYPES.map((type) => {
         const mealsOfType = meals.filter((meal) => meal.mealType === type);
