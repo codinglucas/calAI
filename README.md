@@ -17,6 +17,7 @@ A mobile-first calorie tracker. Take a photo of a meal, a vision LLM (Claude) id
 | Auth + DB  | Supabase Auth (email/password, Google) and Postgres with row-level security |
 | AI         | Anthropic Claude API (vision) via the official TypeScript SDK, server-only  |
 | Validation | Zod, for form input and the model's JSON output                             |
+| Testing    | Vitest and React Testing Library                                            |
 | Hosting    | Vercel                                                                      |
 
 ## Architecture
@@ -53,6 +54,10 @@ Phone browser                       Next.js on Vercel                     Extern
 - **Installable.** `app/manifest.ts` and the icons in `public/icons/` let browsers install calAI to the home screen; it opens full screen on `/today`. The manifest is excluded from the auth proxy because browsers fetch it without cookies. There's no service worker: the app needs the network anyway, and install doesn't require one.
 - **Secrets.** The Anthropic API key is only read by server code. Only the Supabase URL and anon key are public, which is safe because RLS protects the data.
 
+## Testing
+
+`npm test` runs the suite, and CI runs it on every pull request. Tests cover the time zone and nutrition logic, validation, redirect safety, the AI layer, the photo route and the main forms. AI providers are always faked, so a test run makes no real AI calls and costs nothing. Async Server Components and row-level security aren't covered yet: they need browser tests and a local database.
+
 ## Project structure
 
 ```
@@ -80,6 +85,7 @@ supabase/migrations/ SQL migrations (tables, RLS, triggers)
 eval/                reserved for a future Python accuracy evaluation
 public/icons/        app icons (regenerate with npm run icons)
 scripts/             generate-icons.mjs
+__tests__/           Vitest tests: lib/, ai/, api/ and components/
 proxy.ts             session refresh and route protection
 ```
 
@@ -165,6 +171,7 @@ Every push to `main` then deploys to production, and every pull request gets a p
 | `npm run format`    | Prettier (with Tailwind class sorting)                                                   |
 | `npm run db:push`   | Apply migrations to the linked Supabase project                                          |
 | `npm run db:types`  | Regenerate `types/database.ts`                                                           |
+| `npm test`          | Run the tests once (`npm run test:watch` re-runs them as you edit)                       |
 | `npm run icons`     | Regenerate the app icons in `public/icons/`                                              |
 
 ## Roadmap
@@ -176,5 +183,6 @@ Every push to `main` then deploys to production, and every pull request gets a p
 - [x] **Deploy:** production on Vercel, CI on every pull request
 - [x] **Phase 5:** nutrition label reading
 - [x] **Phase 6:** macro goals
+- [x] **Phase 7:** automated tests (Vitest), run in CI
 
-**Later:** USDA nutrition database lookup, automated tests, and a Python accuracy evaluation in `/eval`.
+**Later:** USDA nutrition database lookup, and a Python accuracy evaluation in `/eval`.
