@@ -40,5 +40,7 @@ jobs:
         run: npm run format:check
       - name: Tests
         run: npm test
+      - name: Eval scoring tests
+        run: python3 -m unittest discover -s eval
       - name: Build
         run: npm run build

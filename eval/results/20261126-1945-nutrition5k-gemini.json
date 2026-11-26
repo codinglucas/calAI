@@ -1,0 +1,2888 @@
+{
+  "meta": {
+    "dataset": "nutrition5k",
+    "started": "2026-11-26 19:45 UTC",
+    "commit": "cf1f3d5",
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "summary": {
+    "images": 50,
+    "answered": 50,
+    "failures": {},
+    "median_seconds": 1.9655,
+    "median_kcal_pct_error": 27.18169581130109,
+    "close_rate": 0.34,
+    "mean_kcal_abs_error": 79.23,
+    "mean_kcal_error": -30.09,
+    "mean_macro_abs_error": {
+      "protein_g": 7.02,
+      "carbs_g": 6.44,
+      "fat_g": 7.038
+    }
+  },
+  "results": [
+    {
+      "id": "dish_1558639412",
+      "truth": {
+        "kcal": 33.0,
+        "grams": 97.0,
+        "protein_g": 0.8,
+        "carbs_g": 7.8,
+        "fat_g": 0.2
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1847,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "cantaloupe melon",
+            "grams": 120,
+            "kcal": 40,
+            "protein_g": 1,
+            "carbs_g": 9.6,
+            "fat_g": 0.2,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed fresh cantaloupe melon pieces."
+      },
+      "predicted": {
+        "grams": 120,
+        "kcal": 40,
+        "protein_g": 1,
+        "carbs_g": 9.6,
+        "fat_g": 0.2
+      },
+      "scores": {
+        "kcal_error": 7.0,
+        "kcal_abs_error": 7.0,
+        "kcal_pct_error": 21.21212121212121,
+        "close": false,
+        "protein_g_abs_error": 0.19999999999999996,
+        "carbs_g_abs_error": 1.7999999999999998,
+        "fat_g_abs_error": 0.0
+      }
+    },
+    {
+      "id": "dish_1558639482",
+      "truth": {
+        "kcal": 30.8,
+        "grams": 29.0,
+        "protein_g": 0.9,
+        "carbs_g": 6.4,
+        "fat_g": 0.7
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1906,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "boiled corn cob slice",
+            "grams": 30,
+            "kcal": 26,
+            "protein_g": 1,
+            "carbs_g": 5.7,
+            "fat_g": 0.4,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed plain boiled sweet corn slice."
+      },
+      "predicted": {
+        "grams": 30,
+        "kcal": 26,
+        "protein_g": 1,
+        "carbs_g": 5.7,
+        "fat_g": 0.4
+      },
+      "scores": {
+        "kcal_error": -4.800000000000001,
+        "kcal_abs_error": 4.800000000000001,
+        "kcal_pct_error": 15.584415584415586,
+        "close": true,
+        "protein_g_abs_error": 0.09999999999999998,
+        "carbs_g_abs_error": 0.7000000000000002,
+        "fat_g_abs_error": 0.29999999999999993
+      }
+    },
+    {
+      "id": "dish_1563305513",
+      "truth": {
+        "kcal": 606.3,
+        "grams": 228.0,
+        "protein_g": 25.5,
+        "carbs_g": 76.4,
+        "fat_g": 21.4
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2183,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "cheese pizza",
+            "grams": 220,
+            "kcal": 580,
+            "protein_g": 24,
+            "carbs_g": 66,
+            "fat_g": 24,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed standard cheese pizza slices on a square plate."
+      },
+      "predicted": {
+        "grams": 220,
+        "kcal": 580,
+        "protein_g": 24,
+        "carbs_g": 66,
+        "fat_g": 24
+      },
+      "scores": {
+        "kcal_error": -26.299999999999955,
+        "kcal_abs_error": 26.299999999999955,
+        "kcal_pct_error": 4.337786574303143,
+        "close": true,
+        "protein_g_abs_error": 1.5,
+        "carbs_g_abs_error": 10.400000000000006,
+        "fat_g_abs_error": 2.6000000000000014
+      }
+    },
+    {
+      "id": "dish_1562099134",
+      "truth": {
+        "kcal": 271.6,
+        "grams": 188.0,
+        "protein_g": 17.7,
+        "carbs_g": 18.6,
+        "fat_g": 14.0
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1908,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "mixed green salad",
+            "grams": 50,
+            "kcal": 15,
+            "protein_g": 1,
+            "carbs_g": 2,
+            "fat_g": 0.5,
+            "confidence": "medium"
+          },
+          {
+            "name": "cooked carrots",
+            "grams": 40,
+            "kcal": 15,
+            "protein_g": 0.3,
+            "carbs_g": 3.5,
+            "fat_g": 0.1,
+            "confidence": "medium"
+          },
+          {
+            "name": "cheese slice with toppings",
+            "grams": 30,
+            "kcal": 90,
+            "protein_g": 5,
+            "carbs_g": 3,
+            "fat_g": 6,
+            "confidence": "low"
+          },
+          {
+            "name": "fried chicken drumstick",
+            "grams": 70,
+            "kcal": 160,
+            "protein_g": 14,
+            "carbs_g": 3,
+            "fat_g": 10,
+            "confidence": "medium"
+          }
+        ],
+        "notes": "Assumed light dressing on the salad and standard preparation for the chicken and carrots."
+      },
+      "predicted": {
+        "grams": 190,
+        "kcal": 280,
+        "protein_g": 20.3,
+        "carbs_g": 11.5,
+        "fat_g": 16.6
+      },
+      "scores": {
+        "kcal_error": 8.399999999999977,
+        "kcal_abs_error": 8.399999999999977,
+        "kcal_pct_error": 3.0927835051546304,
+        "close": true,
+        "protein_g_abs_error": 2.6000000000000014,
+        "carbs_g_abs_error": 7.100000000000001,
+        "fat_g_abs_error": 2.6000000000000014
+      }
+    },
+    {
+      "id": "dish_1558630207",
+      "truth": {
+        "kcal": 670.6,
+        "grams": 116.0,
+        "protein_g": 26.0,
+        "carbs_g": 26.3,
+        "fat_g": 57.4
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1635,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "raw almonds",
+            "grams": 50,
+            "kcal": 289,
+            "protein_g": 10.6,
+            "carbs_g": 10.8,
+            "fat_g": 25,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed plain raw almonds based on visual appearance."
+      },
+      "predicted": {
+        "grams": 50,
+        "kcal": 289,
+        "protein_g": 10.6,
+        "carbs_g": 10.8,
+        "fat_g": 25
+      },
+      "scores": {
+        "kcal_error": -381.6,
+        "kcal_abs_error": 381.6,
+        "kcal_pct_error": 56.904264837458996,
+        "close": false,
+        "protein_g_abs_error": 15.4,
+        "carbs_g_abs_error": 15.5,
+        "fat_g_abs_error": 32.4
+      }
+    },
+    {
+      "id": "dish_1562774129",
+      "truth": {
+        "kcal": 73.1,
+        "grams": 77.0,
+        "protein_g": 1.5,
+        "carbs_g": 11.3,
+        "fat_g": 2.9
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2083,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "mixed green salad",
+            "grams": 40,
+            "kcal": 10,
+            "protein_g": 1,
+            "carbs_g": 2,
+            "fat_g": 0.2,
+            "confidence": "high"
+          },
+          {
+            "name": "strawberries",
+            "grams": 30,
+            "kcal": 10,
+            "protein_g": 0.2,
+            "carbs_g": 2.3,
+            "fat_g": 0.1,
+            "confidence": "high"
+          },
+          {
+            "name": "blueberries",
+            "grams": 20,
+            "kcal": 11,
+            "protein_g": 0.1,
+            "carbs_g": 3,
+            "fat_g": 0.1,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed no dressing was added to the salad greens."
+      },
+      "predicted": {
+        "grams": 90,
+        "kcal": 31,
+        "protein_g": 1.3,
+        "carbs_g": 7.3,
+        "fat_g": 0.4
+      },
+      "scores": {
+        "kcal_error": -42.099999999999994,
+        "kcal_abs_error": 42.099999999999994,
+        "kcal_pct_error": 57.59233926128591,
+        "close": false,
+        "protein_g_abs_error": 0.19999999999999996,
+        "carbs_g_abs_error": 4.000000000000001,
+        "fat_g_abs_error": 2.5
+      }
+    },
+    {
+      "id": "dish_1558549605",
+      "truth": {
+        "kcal": 97.5,
+        "grams": 75.0,
+        "protein_g": 2.0,
+        "carbs_g": 21.0,
+        "fat_g": 0.2
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1662,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "white rice",
+            "grams": 150,
+            "kcal": 195,
+            "protein_g": 4,
+            "carbs_g": 42,
+            "fat_g": 0.4,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed plain cooked white rice."
+      },
+      "predicted": {
+        "grams": 150,
+        "kcal": 195,
+        "protein_g": 4,
+        "carbs_g": 42,
+        "fat_g": 0.4
+      },
+      "scores": {
+        "kcal_error": 97.5,
+        "kcal_abs_error": 97.5,
+        "kcal_pct_error": 100.0,
+        "close": false,
+        "protein_g_abs_error": 2.0,
+        "carbs_g_abs_error": 21.0,
+        "fat_g_abs_error": 0.2
+      }
+    },
+    {
+      "id": "dish_1559849412",
+      "truth": {
+        "kcal": 352.6,
+        "grams": 61.0,
+        "protein_g": 13.7,
+        "carbs_g": 13.8,
+        "fat_g": 30.2
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1866,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "raw almonds",
+            "grams": 28,
+            "kcal": 164,
+            "protein_g": 6,
+            "carbs_g": 6,
+            "fat_g": 14,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed raw almonds based on appearance."
+      },
+      "predicted": {
+        "grams": 28,
+        "kcal": 164,
+        "protein_g": 6,
+        "carbs_g": 6,
+        "fat_g": 14
+      },
+      "scores": {
+        "kcal_error": -188.60000000000002,
+        "kcal_abs_error": 188.60000000000002,
+        "kcal_pct_error": 53.48837209302326,
+        "close": false,
+        "protein_g_abs_error": 7.699999999999999,
+        "carbs_g_abs_error": 7.800000000000001,
+        "fat_g_abs_error": 16.2
+      }
+    },
+    {
+      "id": "dish_1558720236",
+      "truth": {
+        "kcal": 887.8,
+        "grams": 407.0,
+        "protein_g": 31.9,
+        "carbs_g": 60.5,
+        "fat_g": 66.4
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2704,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "sliced carrots",
+            "grams": 120,
+            "kcal": 49,
+            "protein_g": 1.1,
+            "carbs_g": 11.5,
+            "fat_g": 0.3,
+            "confidence": "high"
+          },
+          {
+            "name": "raw cauliflower florets",
+            "grams": 50,
+            "kcal": 13,
+            "protein_g": 1,
+            "carbs_g": 2.5,
+            "fat_g": 0.1,
+            "confidence": "high"
+          },
+          {
+            "name": "raw almonds",
+            "grams": 80,
+            "kcal": 462,
+            "protein_g": 16.8,
+            "carbs_g": 17.4,
+            "fat_g": 39.8,
+            "confidence": "high"
+          },
+          {
+            "name": "whole apple",
+            "grams": 150,
+            "kcal": 78,
+            "protein_g": 0.4,
+            "carbs_g": 20.6,
+            "fat_g": 0.3,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed raw carrots and almonds based on appearance."
+      },
+      "predicted": {
+        "grams": 400,
+        "kcal": 602,
+        "protein_g": 19.3,
+        "carbs_g": 52.0,
+        "fat_g": 40.5
+      },
+      "scores": {
+        "kcal_error": -285.79999999999995,
+        "kcal_abs_error": 285.79999999999995,
+        "kcal_pct_error": 32.191935120522636,
+        "close": false,
+        "protein_g_abs_error": 12.599999999999998,
+        "carbs_g_abs_error": 8.5,
+        "fat_g_abs_error": 25.900000000000006
+      }
+    },
+    {
+      "id": "dish_1561574783",
+      "truth": {
+        "kcal": 29.6,
+        "grams": 24.0,
+        "protein_g": 0.6,
+        "carbs_g": 1.0,
+        "fat_g": 2.8
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1582,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "arugula salad",
+            "grams": 20,
+            "kcal": 5,
+            "protein_g": 0.5,
+            "carbs_g": 0.7,
+            "fat_g": 0.1,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed plain arugula with no dressing."
+      },
+      "predicted": {
+        "grams": 20,
+        "kcal": 5,
+        "protein_g": 0.5,
+        "carbs_g": 0.7,
+        "fat_g": 0.1
+      },
+      "scores": {
+        "kcal_error": -24.6,
+        "kcal_abs_error": 24.6,
+        "kcal_pct_error": 83.10810810810811,
+        "close": false,
+        "protein_g_abs_error": 0.09999999999999998,
+        "carbs_g_abs_error": 0.30000000000000004,
+        "fat_g_abs_error": 2.6999999999999997
+      }
+    },
+    {
+      "id": "dish_1566328805",
+      "truth": {
+        "kcal": 927.8,
+        "grams": 488.0,
+        "protein_g": 78.0,
+        "carbs_g": 85.1,
+        "fat_g": 28.7
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1913,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "hawaiian pizza",
+            "grams": 220,
+            "kcal": 550,
+            "protein_g": 22,
+            "carbs_g": 60,
+            "fat_g": 24,
+            "confidence": "high"
+          },
+          {
+            "name": "diced grilled chicken breast",
+            "grams": 150,
+            "kcal": 247,
+            "protein_g": 46,
+            "carbs_g": 0,
+            "fat_g": 5,
+            "confidence": "high"
+          },
+          {
+            "name": "fresh pineapple chunks",
+            "grams": 100,
+            "kcal": 50,
+            "protein_g": 1,
+            "carbs_g": 13,
+            "fat_g": 0,
+            "confidence": "high"
+          },
+          {
+            "name": "cherry tomatoes",
+            "grams": 80,
+            "kcal": 14,
+            "protein_g": 1,
+            "carbs_g": 3,
+            "fat_g": 0,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed standard cheese and ham hawaiian pizza slices along with plain grilled chicken."
+      },
+      "predicted": {
+        "grams": 550,
+        "kcal": 861,
+        "protein_g": 70,
+        "carbs_g": 76,
+        "fat_g": 29
+      },
+      "scores": {
+        "kcal_error": -66.79999999999995,
+        "kcal_abs_error": 66.79999999999995,
+        "kcal_pct_error": 7.199827549040736,
+        "close": true,
+        "protein_g_abs_error": 8.0,
+        "carbs_g_abs_error": 9.099999999999994,
+        "fat_g_abs_error": 0.3000000000000007
+      }
+    },
+    {
+      "id": "dish_1566849987",
+      "truth": {
+        "kcal": 563.0,
+        "grams": 540.0,
+        "protein_g": 80.7,
+        "carbs_g": 20.5,
+        "fat_g": 16.6
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2357,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "diced grilled chicken breast",
+            "grams": 200,
+            "kcal": 330,
+            "protein_g": 62,
+            "carbs_g": 0,
+            "fat_g": 7,
+            "confidence": "high"
+          },
+          {
+            "name": "shredded carrots",
+            "grams": 50,
+            "kcal": 21,
+            "protein_g": 0,
+            "carbs_g": 5,
+            "fat_g": 0,
+            "confidence": "high"
+          },
+          {
+            "name": "cherry tomatoes",
+            "grams": 80,
+            "kcal": 15,
+            "protein_g": 1,
+            "carbs_g": 3,
+            "fat_g": 0,
+            "confidence": "high"
+          },
+          {
+            "name": "red onion",
+            "grams": 30,
+            "kcal": 12,
+            "protein_g": 0,
+            "carbs_g": 3,
+            "fat_g": 0,
+            "confidence": "medium"
+          }
+        ],
+        "notes": "Assumed no oil or dressing was added yet."
+      },
+      "predicted": {
+        "grams": 360,
+        "kcal": 378,
+        "protein_g": 63,
+        "carbs_g": 11,
+        "fat_g": 7
+      },
+      "scores": {
+        "kcal_error": -185.0,
+        "kcal_abs_error": 185.0,
+        "kcal_pct_error": 32.859680284191825,
+        "close": false,
+        "protein_g_abs_error": 17.700000000000003,
+        "carbs_g_abs_error": 9.5,
+        "fat_g_abs_error": 9.600000000000001
+      }
+    },
+    {
+      "id": "dish_1565894858",
+      "truth": {
+        "kcal": 132.8,
+        "grams": 27.0,
+        "protein_g": 1.4,
+        "carbs_g": 17.5,
+        "fat_g": 6.8
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1749,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "chocolate cookie with white chocolate chips",
+            "grams": 30,
+            "kcal": 140,
+            "protein_g": 1.5,
+            "carbs_g": 18,
+            "fat_g": 7,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed a standard chocolate cookie with white chocolate chips weighing approximately 30 grams."
+      },
+      "predicted": {
+        "grams": 30,
+        "kcal": 140,
+        "protein_g": 1.5,
+        "carbs_g": 18,
+        "fat_g": 7
+      },
+      "scores": {
+        "kcal_error": 7.199999999999989,
+        "kcal_abs_error": 7.199999999999989,
+        "kcal_pct_error": 5.421686746987943,
+        "close": true,
+        "protein_g_abs_error": 0.10000000000000009,
+        "carbs_g_abs_error": 0.5,
+        "fat_g_abs_error": 0.20000000000000018
+      }
+    },
+    {
+      "id": "dish_1567785778",
+      "truth": {
+        "kcal": 303.5,
+        "grams": 310.0,
+        "protein_g": 11.7,
+        "carbs_g": 32.6,
+        "fat_g": 15.2
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2382,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "oatmeal with chia seeds",
+            "grams": 150,
+            "kcal": 130,
+            "protein_g": 4,
+            "carbs_g": 22,
+            "fat_g": 3,
+            "confidence": "medium"
+          },
+          {
+            "name": "roasted potatoes",
+            "grams": 80,
+            "kcal": 110,
+            "protein_g": 2,
+            "carbs_g": 16,
+            "fat_g": 4,
+            "confidence": "medium"
+          },
+          {
+            "name": "mixed fruit (pineapple, strawberries, blueberries)",
+            "grams": 100,
+            "kcal": 55,
+            "protein_g": 1,
+            "carbs_g": 14,
+            "fat_g": 0.5,
+            "confidence": "high"
+          },
+          {
+            "name": "green salad with carrots and cucumber",
+            "grams": 60,
+            "kcal": 20,
+            "protein_g": 1,
+            "carbs_g": 4,
+            "fat_g": 0.5,
+            "confidence": "medium"
+          }
+        ],
+        "notes": "Assumed no added butter or heavy oils in the oatmeal and vegetables."
+      },
+      "predicted": {
+        "grams": 390,
+        "kcal": 315,
+        "protein_g": 8,
+        "carbs_g": 56,
+        "fat_g": 8.0
+      },
+      "scores": {
+        "kcal_error": 11.5,
+        "kcal_abs_error": 11.5,
+        "kcal_pct_error": 3.789126853377265,
+        "close": true,
+        "protein_g_abs_error": 3.6999999999999993,
+        "carbs_g_abs_error": 23.4,
+        "fat_g_abs_error": 7.199999999999999
+      }
+    },
+    {
+      "id": "dish_1561663541",
+      "truth": {
+        "kcal": 124.3,
+        "grams": 112.0,
+        "protein_g": 2.9,
+        "carbs_g": 25.8,
+        "fat_g": 1.0
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1894,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "soy sauce seasoned rice",
+            "grams": 80,
+            "kcal": 110,
+            "protein_g": 2.2,
+            "carbs_g": 24,
+            "fat_g": 0.5,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed white rice seasoned with soy sauce."
+      },
+      "predicted": {
+        "grams": 80,
+        "kcal": 110,
+        "protein_g": 2.2,
+        "carbs_g": 24,
+        "fat_g": 0.5
+      },
+      "scores": {
+        "kcal_error": -14.299999999999997,
+        "kcal_abs_error": 14.299999999999997,
+        "kcal_pct_error": 11.504424778761061,
+        "close": true,
+        "protein_g_abs_error": 0.6999999999999997,
+        "carbs_g_abs_error": 1.8000000000000007,
+        "fat_g_abs_error": 0.5
+      }
+    },
+    {
+      "id": "dish_1558373159",
+      "truth": {
+        "kcal": 1013.3,
+        "grams": 334.0,
+        "protein_g": 60.6,
+        "carbs_g": 30.5,
+        "fat_g": 79.1
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2224,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "whole apple",
+            "grams": 180,
+            "kcal": 95,
+            "protein_g": 0.5,
+            "carbs_g": 25,
+            "fat_g": 0.3,
+            "confidence": "high"
+          },
+          {
+            "name": "raw almonds",
+            "grams": 60,
+            "kcal": 348,
+            "protein_g": 12.5,
+            "carbs_g": 12.9,
+            "fat_g": 30,
+            "confidence": "high"
+          },
+          {
+            "name": "cooked sausage slices",
+            "grams": 100,
+            "kcal": 300,
+            "protein_g": 12,
+            "carbs_g": 2,
+            "fat_g": 27,
+            "confidence": "medium"
+          }
+        ],
+        "notes": "Assumed standard pork sausage and raw almonds."
+      },
+      "predicted": {
+        "grams": 340,
+        "kcal": 743,
+        "protein_g": 25.0,
+        "carbs_g": 39.9,
+        "fat_g": 57.3
+      },
+      "scores": {
+        "kcal_error": -270.29999999999995,
+        "kcal_abs_error": 270.29999999999995,
+        "kcal_pct_error": 26.67521957959143,
+        "close": false,
+        "protein_g_abs_error": 35.6,
+        "carbs_g_abs_error": 9.399999999999999,
+        "fat_g_abs_error": 21.799999999999997
+      }
+    },
+    {
+      "id": "dish_1560444892",
+      "truth": {
+        "kcal": 39.5,
+        "grams": 90.0,
+        "protein_g": 0.5,
+        "carbs_g": 10.1,
+        "fat_g": 0.1
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2114,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "pineapple chunks",
+            "grams": 40,
+            "kcal": 20,
+            "protein_g": 0.2,
+            "carbs_g": 5.2,
+            "fat_g": 0.1,
+            "confidence": "high"
+          },
+          {
+            "name": "honeydew melon chunks",
+            "grams": 40,
+            "kcal": 14,
+            "protein_g": 0.2,
+            "carbs_g": 3.6,
+            "fat_g": 0.1,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Small portion of fresh fruit pieces on a large plate."
+      },
+      "predicted": {
+        "grams": 80,
+        "kcal": 34,
+        "protein_g": 0.4,
+        "carbs_g": 8.8,
+        "fat_g": 0.2
+      },
+      "scores": {
+        "kcal_error": -5.5,
+        "kcal_abs_error": 5.5,
+        "kcal_pct_error": 13.924050632911392,
+        "close": true,
+        "protein_g_abs_error": 0.09999999999999998,
+        "carbs_g_abs_error": 1.299999999999999,
+        "fat_g_abs_error": 0.1
+      }
+    },
+    {
+      "id": "dish_1561574368",
+      "truth": {
+        "kcal": 22.0,
+        "grams": 50.0,
+        "protein_g": 1.6,
+        "carbs_g": 2.1,
+        "fat_g": 1.1
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1919,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Caesar salad",
+            "grams": 40,
+            "kcal": 90,
+            "protein_g": 2,
+            "carbs_g": 3,
+            "fat_g": 8,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Small portion of Caesar salad with dressing and croutons."
+      },
+      "predicted": {
+        "grams": 40,
+        "kcal": 90,
+        "protein_g": 2,
+        "carbs_g": 3,
+        "fat_g": 8
+      },
+      "scores": {
+        "kcal_error": 68.0,
+        "kcal_abs_error": 68.0,
+        "kcal_pct_error": 309.09090909090907,
+        "close": false,
+        "protein_g_abs_error": 0.3999999999999999,
+        "carbs_g_abs_error": 0.8999999999999999,
+        "fat_g_abs_error": 6.9
+      }
+    },
+    {
+      "id": "dish_1558114284",
+      "truth": {
+        "kcal": 162.2,
+        "grams": 316.0,
+        "protein_g": 21.3,
+        "carbs_g": 22.6,
+        "fat_g": 0.6
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2093,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "whole apple",
+            "grams": 180,
+            "kcal": 95,
+            "protein_g": 0.5,
+            "carbs_g": 25,
+            "fat_g": 0.3,
+            "confidence": "high"
+          },
+          {
+            "name": "cantaloupe melon chunks",
+            "grams": 120,
+            "kcal": 40,
+            "protein_g": 1,
+            "carbs_g": 9.8,
+            "fat_g": 0.2,
+            "confidence": "high"
+          },
+          {
+            "name": "red and green grapes",
+            "grams": 100,
+            "kcal": 69,
+            "protein_g": 0.7,
+            "carbs_g": 18.1,
+            "fat_g": 0.2,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed standard ripe fruits with typical sugar and calorie contents."
+      },
+      "predicted": {
+        "grams": 400,
+        "kcal": 204,
+        "protein_g": 2.2,
+        "carbs_g": 52.9,
+        "fat_g": 0.7
+      },
+      "scores": {
+        "kcal_error": 41.80000000000001,
+        "kcal_abs_error": 41.80000000000001,
+        "kcal_pct_error": 25.77065351418003,
+        "close": false,
+        "protein_g_abs_error": 19.1,
+        "carbs_g_abs_error": 30.299999999999997,
+        "fat_g_abs_error": 0.09999999999999998
+      }
+    },
+    {
+      "id": "dish_1562776428",
+      "truth": {
+        "kcal": 33.7,
+        "grams": 66.0,
+        "protein_g": 2.2,
+        "carbs_g": 5.9,
+        "fat_g": 0.8
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1477,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "roasted brussels sprouts",
+            "grams": 80,
+            "kcal": 55,
+            "protein_g": 3,
+            "carbs_g": 7,
+            "fat_g": 2,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed cooked with a small amount of oil."
+      },
+      "predicted": {
+        "grams": 80,
+        "kcal": 55,
+        "protein_g": 3,
+        "carbs_g": 7,
+        "fat_g": 2
+      },
+      "scores": {
+        "kcal_error": 21.299999999999997,
+        "kcal_abs_error": 21.299999999999997,
+        "kcal_pct_error": 63.204747774480694,
+        "close": false,
+        "protein_g_abs_error": 0.7999999999999998,
+        "carbs_g_abs_error": 1.0999999999999996,
+        "fat_g_abs_error": 1.2
+      }
+    },
+    {
+      "id": "dish_1561577848",
+      "truth": {
+        "kcal": 413.3,
+        "grams": 254.0,
+        "protein_g": 63.1,
+        "carbs_g": 6.0,
+        "fat_g": 13.8
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1571,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "sliced chicken breast with dressing and greens",
+            "grams": 150,
+            "kcal": 240,
+            "protein_g": 35,
+            "carbs_g": 5,
+            "fat_g": 9,
+            "confidence": "medium"
+          }
+        ],
+        "notes": "Assumed creamy dressing and a small portion of mixed greens with the chicken."
+      },
+      "predicted": {
+        "grams": 150,
+        "kcal": 240,
+        "protein_g": 35,
+        "carbs_g": 5,
+        "fat_g": 9
+      },
+      "scores": {
+        "kcal_error": -173.3,
+        "kcal_abs_error": 173.3,
+        "kcal_pct_error": 41.93080087103799,
+        "close": false,
+        "protein_g_abs_error": 28.1,
+        "carbs_g_abs_error": 1.0,
+        "fat_g_abs_error": 4.800000000000001
+      }
+    },
+    {
+      "id": "dish_1561654346",
+      "truth": {
+        "kcal": 79.2,
+        "grams": 84.0,
+        "protein_g": 2.7,
+        "carbs_g": 10.4,
+        "fat_g": 3.7
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1678,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "mixed salad greens",
+            "grams": 30,
+            "kcal": 7,
+            "protein_g": 0.6,
+            "carbs_g": 1.1,
+            "fat_g": 0.1,
+            "confidence": "high"
+          },
+          {
+            "name": "roasted brussels sprouts",
+            "grams": 40,
+            "kcal": 22,
+            "protein_g": 1.4,
+            "carbs_g": 3.6,
+            "fat_g": 0.5,
+            "confidence": "high"
+          },
+          {
+            "name": "raspberries",
+            "grams": 10,
+            "kcal": 5,
+            "protein_g": 0.1,
+            "carbs_g": 1.2,
+            "fat_g": 0.1,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed no added dressing or oil on the salad."
+      },
+      "predicted": {
+        "grams": 80,
+        "kcal": 34,
+        "protein_g": 2.1,
+        "carbs_g": 5.9,
+        "fat_g": 0.7
+      },
+      "scores": {
+        "kcal_error": -45.2,
+        "kcal_abs_error": 45.2,
+        "kcal_pct_error": 57.07070707070707,
+        "close": false,
+        "protein_g_abs_error": 0.6000000000000001,
+        "carbs_g_abs_error": 4.5,
+        "fat_g_abs_error": 3.0
+      }
+    },
+    {
+      "id": "dish_1558461692",
+      "truth": {
+        "kcal": 231.2,
+        "grams": 40.0,
+        "protein_g": 9.0,
+        "carbs_g": 9.1,
+        "fat_g": 19.8
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1962,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "raw almonds",
+            "grams": 25,
+            "kcal": 145,
+            "protein_g": 5.3,
+            "carbs_g": 5.4,
+            "fat_g": 12.5,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Estimated around 25 grams of plain almonds."
+      },
+      "predicted": {
+        "grams": 25,
+        "kcal": 145,
+        "protein_g": 5.3,
+        "carbs_g": 5.4,
+        "fat_g": 12.5
+      },
+      "scores": {
+        "kcal_error": -86.19999999999999,
+        "kcal_abs_error": 86.19999999999999,
+        "kcal_pct_error": 37.28373702422145,
+        "close": false,
+        "protein_g_abs_error": 3.7,
+        "carbs_g_abs_error": 3.6999999999999993,
+        "fat_g_abs_error": 7.300000000000001
+      }
+    },
+    {
+      "id": "dish_1565118782",
+      "truth": {
+        "kcal": 557.5,
+        "grams": 353.0,
+        "protein_g": 43.7,
+        "carbs_g": 17.0,
+        "fat_g": 34.1
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1977,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "arugula and quinoa salad",
+            "grams": 80,
+            "kcal": 65,
+            "protein_g": 2.5,
+            "carbs_g": 7,
+            "fat_g": 3,
+            "confidence": "medium"
+          },
+          {
+            "name": "braised beef",
+            "grams": 150,
+            "kcal": 310,
+            "protein_g": 35,
+            "carbs_g": 2,
+            "fat_g": 18,
+            "confidence": "medium"
+          },
+          {
+            "name": "cooked greens and beets",
+            "grams": 90,
+            "kcal": 45,
+            "protein_g": 2,
+            "carbs_g": 8,
+            "fat_g": 1,
+            "confidence": "medium"
+          }
+        ],
+        "notes": "Assumed standard cooking oils and dressings were used in moderate amounts."
+      },
+      "predicted": {
+        "grams": 320,
+        "kcal": 420,
+        "protein_g": 39.5,
+        "carbs_g": 17,
+        "fat_g": 22
+      },
+      "scores": {
+        "kcal_error": -137.5,
+        "kcal_abs_error": 137.5,
+        "kcal_pct_error": 24.663677130044842,
+        "close": false,
+        "protein_g_abs_error": 4.200000000000003,
+        "carbs_g_abs_error": 0.0,
+        "fat_g_abs_error": 12.100000000000001
+      }
+    },
+    {
+      "id": "dish_1558114086",
+      "truth": {
+        "kcal": 74.4,
+        "grams": 143.0,
+        "protein_g": 20.0,
+        "carbs_g": 0.4,
+        "fat_g": 0.3
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1656,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "whole red apple",
+            "grams": 180,
+            "kcal": 95,
+            "protein_g": 0.5,
+            "carbs_g": 25,
+            "fat_g": 0.3,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed a standard medium-sized red apple."
+      },
+      "predicted": {
+        "grams": 180,
+        "kcal": 95,
+        "protein_g": 0.5,
+        "carbs_g": 25,
+        "fat_g": 0.3
+      },
+      "scores": {
+        "kcal_error": 20.599999999999994,
+        "kcal_abs_error": 20.599999999999994,
+        "kcal_pct_error": 27.688172043010745,
+        "close": false,
+        "protein_g_abs_error": 19.5,
+        "carbs_g_abs_error": 24.6,
+        "fat_g_abs_error": 0.0
+      }
+    },
+    {
+      "id": "dish_1561739265",
+      "truth": {
+        "kcal": 292.0,
+        "grams": 308.0,
+        "protein_g": 10.7,
+        "carbs_g": 41.1,
+        "fat_g": 10.0
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2531,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "white fish",
+            "grams": 100,
+            "kcal": 82,
+            "protein_g": 18,
+            "carbs_g": 0,
+            "fat_g": 1,
+            "confidence": "medium"
+          },
+          {
+            "name": "roasted sweet potato",
+            "grams": 80,
+            "kcal": 72,
+            "protein_g": 1.3,
+            "carbs_g": 16.8,
+            "fat_g": 0.2,
+            "confidence": "medium"
+          },
+          {
+            "name": "steamed broccoli",
+            "grams": 50,
+            "kcal": 17,
+            "protein_g": 1.4,
+            "carbs_g": 3.5,
+            "fat_g": 0.2,
+            "confidence": "high"
+          },
+          {
+            "name": "shredded hash browns",
+            "grams": 40,
+            "kcal": 70,
+            "protein_g": 1,
+            "carbs_g": 9,
+            "fat_g": 3.5,
+            "confidence": "medium"
+          },
+          {
+            "name": "mixed berries",
+            "grams": 30,
+            "kcal": 15,
+            "protein_g": 0.4,
+            "carbs_g": 3.5,
+            "fat_g": 0.2,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed minimal oil used for cooking the sweet potatoes and hash browns."
+      },
+      "predicted": {
+        "grams": 300,
+        "kcal": 256,
+        "protein_g": 22.1,
+        "carbs_g": 32.8,
+        "fat_g": 5.1
+      },
+      "scores": {
+        "kcal_error": -36.0,
+        "kcal_abs_error": 36.0,
+        "kcal_pct_error": 12.32876712328767,
+        "close": true,
+        "protein_g_abs_error": 11.400000000000002,
+        "carbs_g_abs_error": 8.300000000000004,
+        "fat_g_abs_error": 4.9
+      }
+    },
+    {
+      "id": "dish_1558546663",
+      "truth": {
+        "kcal": 330.7,
+        "grams": 197.0,
+        "protein_g": 10.6,
+        "carbs_g": 30.3,
+        "fat_g": 22.1
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1865,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "apple",
+            "grams": 150,
+            "kcal": 78,
+            "protein_g": 0.4,
+            "carbs_g": 21,
+            "fat_g": 0.3,
+            "confidence": "high"
+          },
+          {
+            "name": "almonds",
+            "grams": 30,
+            "kcal": 174,
+            "protein_g": 6.3,
+            "carbs_g": 6.1,
+            "fat_g": 15,
+            "confidence": "high"
+          },
+          {
+            "name": "spinach",
+            "grams": 20,
+            "kcal": 5,
+            "protein_g": 0.6,
+            "carbs_g": 0.7,
+            "fat_g": 0.1,
+            "confidence": "medium"
+          }
+        ],
+        "notes": "Assumed raw spinach, whole apple, and dry roasted or raw almonds."
+      },
+      "predicted": {
+        "grams": 200,
+        "kcal": 257,
+        "protein_g": 7.3,
+        "carbs_g": 27.8,
+        "fat_g": 15.4
+      },
+      "scores": {
+        "kcal_error": -73.69999999999999,
+        "kcal_abs_error": 73.69999999999999,
+        "kcal_pct_error": 22.28605987299667,
+        "close": false,
+        "protein_g_abs_error": 3.3,
+        "carbs_g_abs_error": 2.5,
+        "fat_g_abs_error": 6.700000000000001
+      }
+    },
+    {
+      "id": "dish_1565020822",
+      "truth": {
+        "kcal": 180.6,
+        "grams": 193.0,
+        "protein_g": 13.0,
+        "carbs_g": 17.3,
+        "fat_g": 5.8
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2343,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "cooked sweet potato",
+            "grams": 80,
+            "kcal": 70,
+            "protein_g": 1.3,
+            "carbs_g": 16,
+            "fat_g": 0.1,
+            "confidence": "medium"
+          },
+          {
+            "name": "feta cheese",
+            "grams": 50,
+            "kcal": 132,
+            "protein_g": 7,
+            "carbs_g": 2,
+            "fat_g": 10.5,
+            "confidence": "medium"
+          },
+          {
+            "name": "cooked bacon",
+            "grams": 25,
+            "kcal": 135,
+            "protein_g": 9,
+            "carbs_g": 0.3,
+            "fat_g": 10.8,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed standard portions for the visible sweet potato cubes, feta cheese chunks, and bacon strips."
+      },
+      "predicted": {
+        "grams": 155,
+        "kcal": 337,
+        "protein_g": 17.3,
+        "carbs_g": 18.3,
+        "fat_g": 21.400000000000002
+      },
+      "scores": {
+        "kcal_error": 156.4,
+        "kcal_abs_error": 156.4,
+        "kcal_pct_error": 86.60022148394242,
+        "close": false,
+        "protein_g_abs_error": 4.300000000000001,
+        "carbs_g_abs_error": 1.0,
+        "fat_g_abs_error": 15.600000000000001
+      }
+    },
+    {
+      "id": "dish_1561662160",
+      "truth": {
+        "kcal": 41.8,
+        "grams": 36.0,
+        "protein_g": 0.6,
+        "carbs_g": 2.8,
+        "fat_g": 3.4
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2010,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "mixed salad greens",
+            "grams": 30,
+            "kcal": 6,
+            "protein_g": 0.5,
+            "carbs_g": 1.1,
+            "fat_g": 0.1,
+            "confidence": "high"
+          },
+          {
+            "name": "red bell pepper",
+            "grams": 10,
+            "kcal": 3,
+            "protein_g": 0.1,
+            "carbs_g": 0.6,
+            "fat_g": 0,
+            "confidence": "medium"
+          },
+          {
+            "name": "quinoa",
+            "grams": 10,
+            "kcal": 12,
+            "protein_g": 0.4,
+            "carbs_g": 2.1,
+            "fat_g": 0.2,
+            "confidence": "low"
+          }
+        ],
+        "notes": "Very small portion of salad remaining on the plate. Assumed negligible dressing."
+      },
+      "predicted": {
+        "grams": 50,
+        "kcal": 21,
+        "protein_g": 1.0,
+        "carbs_g": 3.8000000000000003,
+        "fat_g": 0.30000000000000004
+      },
+      "scores": {
+        "kcal_error": -20.799999999999997,
+        "kcal_abs_error": 20.799999999999997,
+        "kcal_pct_error": 49.760765550239235,
+        "close": false,
+        "protein_g_abs_error": 0.4,
+        "carbs_g_abs_error": 1.0000000000000004,
+        "fat_g_abs_error": 3.0999999999999996
+      }
+    },
+    {
+      "id": "dish_1563898107",
+      "truth": {
+        "kcal": 440.7,
+        "grams": 424.0,
+        "protein_g": 25.5,
+        "carbs_g": 34.8,
+        "fat_g": 23.1
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2041,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "scrambled eggs",
+            "grams": 100,
+            "kcal": 149,
+            "protein_g": 10,
+            "carbs_g": 1.5,
+            "fat_g": 11,
+            "confidence": "high"
+          },
+          {
+            "name": "cooked bacon slice",
+            "grams": 15,
+            "kcal": 80,
+            "protein_g": 5,
+            "carbs_g": 0.2,
+            "fat_g": 6.5,
+            "confidence": "high"
+          },
+          {
+            "name": "pineapple chunks",
+            "grams": 80,
+            "kcal": 40,
+            "protein_g": 0.4,
+            "carbs_g": 10,
+            "fat_g": 0.1,
+            "confidence": "high"
+          },
+          {
+            "name": "chia pudding",
+            "grams": 100,
+            "kcal": 130,
+            "protein_g": 4,
+            "carbs_g": 12,
+            "fat_g": 8,
+            "confidence": "medium"
+          },
+          {
+            "name": "raspberries and blueberries",
+            "grams": 40,
+            "kcal": 23,
+            "protein_g": 0.5,
+            "carbs_g": 5.5,
+            "fat_g": 0.3,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed chia pudding was made with standard plant or dairy milk without extra sweeteners."
+      },
+      "predicted": {
+        "grams": 335,
+        "kcal": 422,
+        "protein_g": 19.9,
+        "carbs_g": 29.2,
+        "fat_g": 25.9
+      },
+      "scores": {
+        "kcal_error": -18.69999999999999,
+        "kcal_abs_error": 18.69999999999999,
+        "kcal_pct_error": 4.243249375992737,
+        "close": true,
+        "protein_g_abs_error": 5.600000000000001,
+        "carbs_g_abs_error": 5.599999999999998,
+        "fat_g_abs_error": 2.799999999999997
+      }
+    },
+    {
+      "id": "dish_1566850142",
+      "truth": {
+        "kcal": 465.0,
+        "grams": 284.0,
+        "protein_g": 35.2,
+        "carbs_g": 9.1,
+        "fat_g": 31.8
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1708,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "pulled pork with coleslaw",
+            "grams": 150,
+            "kcal": 310,
+            "protein_g": 25,
+            "carbs_g": 10,
+            "fat_g": 18,
+            "confidence": "medium"
+          },
+          {
+            "name": "mixed green salad with broccoli",
+            "grams": 120,
+            "kcal": 35,
+            "protein_g": 3,
+            "carbs_g": 6,
+            "fat_g": 1,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed moderate fat in the pulled pork and no heavy dressing on the salad."
+      },
+      "predicted": {
+        "grams": 270,
+        "kcal": 345,
+        "protein_g": 28,
+        "carbs_g": 16,
+        "fat_g": 19
+      },
+      "scores": {
+        "kcal_error": -120.0,
+        "kcal_abs_error": 120.0,
+        "kcal_pct_error": 25.806451612903224,
+        "close": false,
+        "protein_g_abs_error": 7.200000000000003,
+        "carbs_g_abs_error": 6.9,
+        "fat_g_abs_error": 12.8
+      }
+    },
+    {
+      "id": "dish_1557936555",
+      "truth": {
+        "kcal": 149.3,
+        "grams": 96.0,
+        "protein_g": 12.0,
+        "carbs_g": 1.2,
+        "fat_g": 10.1
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1542,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "scrambled eggs",
+            "grams": 100,
+            "kcal": 149,
+            "protein_g": 10,
+            "carbs_g": 1.1,
+            "fat_g": 11,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed cooked with a standard amount of butter or oil."
+      },
+      "predicted": {
+        "grams": 100,
+        "kcal": 149,
+        "protein_g": 10,
+        "carbs_g": 1.1,
+        "fat_g": 11
+      },
+      "scores": {
+        "kcal_error": -0.30000000000001137,
+        "kcal_abs_error": 0.30000000000001137,
+        "kcal_pct_error": 0.20093770931012148,
+        "close": true,
+        "protein_g_abs_error": 2.0,
+        "carbs_g_abs_error": 0.09999999999999987,
+        "fat_g_abs_error": 0.9000000000000004
+      }
+    },
+    {
+      "id": "dish_1566587182",
+      "truth": {
+        "kcal": 531.3,
+        "grams": 377.0,
+        "protein_g": 31.4,
+        "carbs_g": 22.5,
+        "fat_g": 37.4
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2485,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "breaded chicken breast",
+            "grams": 120,
+            "kcal": 240,
+            "protein_g": 28,
+            "carbs_g": 10,
+            "fat_g": 9,
+            "confidence": "medium"
+          },
+          {
+            "name": "avocado",
+            "grams": 80,
+            "kcal": 130,
+            "protein_g": 2,
+            "carbs_g": 7,
+            "fat_g": 12,
+            "confidence": "high"
+          },
+          {
+            "name": "mixed greens salad with cherry tomatoes and peppers",
+            "grams": 100,
+            "kcal": 35,
+            "protein_g": 2,
+            "carbs_g": 6,
+            "fat_g": 1,
+            "confidence": "medium"
+          }
+        ],
+        "notes": "Assumed no extra dressings on the salad. Chicken preparation includes light breading."
+      },
+      "predicted": {
+        "grams": 300,
+        "kcal": 405,
+        "protein_g": 32,
+        "carbs_g": 23,
+        "fat_g": 22
+      },
+      "scores": {
+        "kcal_error": -126.29999999999995,
+        "kcal_abs_error": 126.29999999999995,
+        "kcal_pct_error": 23.771880293619418,
+        "close": false,
+        "protein_g_abs_error": 0.6000000000000014,
+        "carbs_g_abs_error": 0.5,
+        "fat_g_abs_error": 15.399999999999999
+      }
+    },
+    {
+      "id": "dish_1560526514",
+      "truth": {
+        "kcal": 183.3,
+        "grams": 224.0,
+        "protein_g": 3.4,
+        "carbs_g": 26.0,
+        "fat_g": 8.4
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2381,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "mixed green salad",
+            "grams": 80,
+            "kcal": 20,
+            "protein_g": 1.5,
+            "carbs_g": 3.5,
+            "fat_g": 0.3,
+            "confidence": "high"
+          },
+          {
+            "name": "pineapple chunks",
+            "grams": 70,
+            "kcal": 35,
+            "protein_g": 0.4,
+            "carbs_g": 9,
+            "fat_g": 0.1,
+            "confidence": "high"
+          },
+          {
+            "name": "sliced strawberries",
+            "grams": 40,
+            "kcal": 13,
+            "protein_g": 0.3,
+            "carbs_g": 3,
+            "fat_g": 0.1,
+            "confidence": "high"
+          },
+          {
+            "name": "roasted potatoes",
+            "grams": 90,
+            "kcal": 130,
+            "protein_g": 2.2,
+            "carbs_g": 18,
+            "fat_g": 5,
+            "confidence": "medium"
+          }
+        ],
+        "notes": "Assumed light oil used for roasting potatoes."
+      },
+      "predicted": {
+        "grams": 280,
+        "kcal": 198,
+        "protein_g": 4.4,
+        "carbs_g": 33.5,
+        "fat_g": 5.5
+      },
+      "scores": {
+        "kcal_error": 14.699999999999989,
+        "kcal_abs_error": 14.699999999999989,
+        "kcal_pct_error": 8.019639934533544,
+        "close": true,
+        "protein_g_abs_error": 1.0000000000000004,
+        "carbs_g_abs_error": 7.5,
+        "fat_g_abs_error": 2.9000000000000004
+      }
+    },
+    {
+      "id": "dish_1558110385",
+      "truth": {
+        "kcal": 52.9,
+        "grams": 34.0,
+        "protein_g": 4.2,
+        "carbs_g": 0.4,
+        "fat_g": 3.6
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2885,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "scrambled eggs",
+            "grams": 80,
+            "kcal": 140,
+            "protein_g": 9.5,
+            "carbs_g": 0.8,
+            "fat_g": 10.5,
+            "confidence": "medium"
+          }
+        ],
+        "notes": "Assumed cooked with a standard amount of butter or oil."
+      },
+      "predicted": {
+        "grams": 80,
+        "kcal": 140,
+        "protein_g": 9.5,
+        "carbs_g": 0.8,
+        "fat_g": 10.5
+      },
+      "scores": {
+        "kcal_error": 87.1,
+        "kcal_abs_error": 87.1,
+        "kcal_pct_error": 164.65028355387523,
+        "close": false,
+        "protein_g_abs_error": 5.3,
+        "carbs_g_abs_error": 0.4,
+        "fat_g_abs_error": 6.9
+      }
+    },
+    {
+      "id": "dish_1558461607",
+      "truth": {
+        "kcal": 87.6,
+        "grams": 127.0,
+        "protein_g": 0.9,
+        "carbs_g": 22.9,
+        "fat_g": 0.3
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2694,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "red grapes",
+            "grams": 100,
+            "kcal": 69,
+            "protein_g": 0.7,
+            "carbs_g": 18.1,
+            "fat_g": 0.2,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed standard red table grapes."
+      },
+      "predicted": {
+        "grams": 100,
+        "kcal": 69,
+        "protein_g": 0.7,
+        "carbs_g": 18.1,
+        "fat_g": 0.2
+      },
+      "scores": {
+        "kcal_error": -18.599999999999994,
+        "kcal_abs_error": 18.599999999999994,
+        "kcal_pct_error": 21.232876712328764,
+        "close": false,
+        "protein_g_abs_error": 0.20000000000000007,
+        "carbs_g_abs_error": 4.799999999999997,
+        "fat_g_abs_error": 0.09999999999999998
+      }
+    },
+    {
+      "id": "dish_1560801797",
+      "truth": {
+        "kcal": 25.7,
+        "grams": 96.0,
+        "protein_g": 1.3,
+        "carbs_g": 4.1,
+        "fat_g": 0.7
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2158,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "roasted cauliflower",
+            "grams": 40,
+            "kcal": 15,
+            "protein_g": 1,
+            "carbs_g": 2.5,
+            "fat_g": 0.5,
+            "confidence": "high"
+          },
+          {
+            "name": "roasted sweet potato",
+            "grams": 30,
+            "kcal": 30,
+            "protein_g": 0.5,
+            "carbs_g": 7,
+            "fat_g": 0.1,
+            "confidence": "medium"
+          }
+        ],
+        "notes": "Portions are very small. Assumed minimal oil used for roasting."
+      },
+      "predicted": {
+        "grams": 70,
+        "kcal": 45,
+        "protein_g": 1.5,
+        "carbs_g": 9.5,
+        "fat_g": 0.6
+      },
+      "scores": {
+        "kcal_error": 19.3,
+        "kcal_abs_error": 19.3,
+        "kcal_pct_error": 75.09727626459144,
+        "close": false,
+        "protein_g_abs_error": 0.19999999999999996,
+        "carbs_g_abs_error": 5.4,
+        "fat_g_abs_error": 0.09999999999999998
+      }
+    },
+    {
+      "id": "dish_1566316757",
+      "truth": {
+        "kcal": 448.4,
+        "grams": 819.0,
+        "protein_g": 59.5,
+        "carbs_g": 34.2,
+        "fat_g": 4.4
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2332,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "mashed potatoes",
+            "grams": 250,
+            "kcal": 215,
+            "protein_g": 4,
+            "carbs_g": 35,
+            "fat_g": 7,
+            "confidence": "medium"
+          },
+          {
+            "name": "tofu cubes",
+            "grams": 80,
+            "kcal": 110,
+            "protein_g": 12,
+            "carbs_g": 3,
+            "fat_g": 6,
+            "confidence": "medium"
+          },
+          {
+            "name": "gravy",
+            "grams": 100,
+            "kcal": 65,
+            "protein_g": 1,
+            "carbs_g": 8,
+            "fat_g": 3,
+            "confidence": "low"
+          }
+        ],
+        "notes": "Assumed standard mashed potatoes with butter and a savory brown or herb gravy over tofu and potatoes."
+      },
+      "predicted": {
+        "grams": 430,
+        "kcal": 390,
+        "protein_g": 17,
+        "carbs_g": 46,
+        "fat_g": 16
+      },
+      "scores": {
+        "kcal_error": -58.39999999999998,
+        "kcal_abs_error": 58.39999999999998,
+        "kcal_pct_error": 13.024085637823369,
+        "close": true,
+        "protein_g_abs_error": 42.5,
+        "carbs_g_abs_error": 11.799999999999997,
+        "fat_g_abs_error": 11.6
+      }
+    },
+    {
+      "id": "dish_1560456348",
+      "truth": {
+        "kcal": 210.3,
+        "grams": 149.0,
+        "protein_g": 29.9,
+        "carbs_g": 4.6,
+        "fat_g": 7.5
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2200,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "roasted chicken leg quarter",
+            "grams": 150,
+            "kcal": 315,
+            "protein_g": 24,
+            "carbs_g": 0,
+            "fat_g": 23,
+            "confidence": "high"
+          },
+          {
+            "name": "green beans",
+            "grams": 40,
+            "kcal": 15,
+            "protein_g": 1,
+            "carbs_g": 3,
+            "fat_g": 0,
+            "confidence": "high"
+          },
+          {
+            "name": "arugula salad",
+            "grams": 30,
+            "kcal": 10,
+            "protein_g": 1,
+            "carbs_g": 1,
+            "fat_g": 0,
+            "confidence": "medium"
+          }
+        ],
+        "notes": "Assumed minimal cooking oil used for the chicken and vegetables."
+      },
+      "predicted": {
+        "grams": 220,
+        "kcal": 340,
+        "protein_g": 26,
+        "carbs_g": 4,
+        "fat_g": 23
+      },
+      "scores": {
+        "kcal_error": 129.7,
+        "kcal_abs_error": 129.7,
+        "kcal_pct_error": 61.673799334284354,
+        "close": false,
+        "protein_g_abs_error": 3.8999999999999986,
+        "carbs_g_abs_error": 0.5999999999999996,
+        "fat_g_abs_error": 15.5
+      }
+    },
+    {
+      "id": "dish_1558635546",
+      "truth": {
+        "kcal": 60.8,
+        "grams": 117.0,
+        "protein_g": 0.4,
+        "carbs_g": 16.4,
+        "fat_g": 0.2
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1938,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "whole red apple",
+            "grams": 180,
+            "kcal": 95,
+            "protein_g": 0.5,
+            "carbs_g": 25,
+            "fat_g": 0.3,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed a medium-sized red apple."
+      },
+      "predicted": {
+        "grams": 180,
+        "kcal": 95,
+        "protein_g": 0.5,
+        "carbs_g": 25,
+        "fat_g": 0.3
+      },
+      "scores": {
+        "kcal_error": 34.2,
+        "kcal_abs_error": 34.2,
+        "kcal_pct_error": 56.250000000000014,
+        "close": false,
+        "protein_g_abs_error": 0.09999999999999998,
+        "carbs_g_abs_error": 8.600000000000001,
+        "fat_g_abs_error": 0.09999999999999998
+      }
+    },
+    {
+      "id": "dish_1568401199",
+      "truth": {
+        "kcal": 459.6,
+        "grams": 343.0,
+        "protein_g": 38.0,
+        "carbs_g": 24.8,
+        "fat_g": 22.5
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1463,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "tuna salad",
+            "grams": 150,
+            "kcal": 220,
+            "protein_g": 25,
+            "carbs_g": 4,
+            "fat_g": 11,
+            "confidence": "medium"
+          },
+          {
+            "name": "mashed sweet potato",
+            "grams": 120,
+            "kcal": 105,
+            "protein_g": 2,
+            "carbs_g": 24,
+            "fat_g": 0.5,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed the tuna salad is made with regular mayonnaise."
+      },
+      "predicted": {
+        "grams": 270,
+        "kcal": 325,
+        "protein_g": 27,
+        "carbs_g": 28,
+        "fat_g": 11.5
+      },
+      "scores": {
+        "kcal_error": -134.60000000000002,
+        "kcal_abs_error": 134.60000000000002,
+        "kcal_pct_error": 29.286335944299395,
+        "close": false,
+        "protein_g_abs_error": 11.0,
+        "carbs_g_abs_error": 3.1999999999999993,
+        "fat_g_abs_error": 11.0
+      }
+    },
+    {
+      "id": "dish_1565638478",
+      "truth": {
+        "kcal": 47.6,
+        "grams": 91.0,
+        "protein_g": 1.6,
+        "carbs_g": 6.2,
+        "fat_g": 2.4
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2004,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "cooked asparagus",
+            "grams": 80,
+            "kcal": 22,
+            "protein_g": 2.2,
+            "carbs_g": 3.2,
+            "fat_g": 0.2,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed cooked with a minimal amount of oil or butter."
+      },
+      "predicted": {
+        "grams": 80,
+        "kcal": 22,
+        "protein_g": 2.2,
+        "carbs_g": 3.2,
+        "fat_g": 0.2
+      },
+      "scores": {
+        "kcal_error": -25.6,
+        "kcal_abs_error": 25.6,
+        "kcal_pct_error": 53.78151260504202,
+        "close": false,
+        "protein_g_abs_error": 0.6000000000000001,
+        "carbs_g_abs_error": 3.0,
+        "fat_g_abs_error": 2.1999999999999997
+      }
+    },
+    {
+      "id": "dish_1563566909",
+      "truth": {
+        "kcal": 222.5,
+        "grams": 187.0,
+        "protein_g": 9.3,
+        "carbs_g": 46.8,
+        "fat_g": 0.7
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2884,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "firm tofu",
+            "grams": 80,
+            "kcal": 68,
+            "protein_g": 8,
+            "carbs_g": 2,
+            "fat_g": 4,
+            "confidence": "medium"
+          },
+          {
+            "name": "brown rice",
+            "grams": 100,
+            "kcal": 111,
+            "protein_g": 2.6,
+            "carbs_g": 23,
+            "fat_g": 0.9,
+            "confidence": "medium"
+          },
+          {
+            "name": "mixed stir-fry vegetables",
+            "grams": 60,
+            "kcal": 25,
+            "protein_g": 1,
+            "carbs_g": 5,
+            "fat_g": 0.2,
+            "confidence": "medium"
+          },
+          {
+            "name": "cooking oil",
+            "grams": 5,
+            "kcal": 44,
+            "protein_g": 0,
+            "carbs_g": 0,
+            "fat_g": 5,
+            "confidence": "low"
+          }
+        ],
+        "notes": "Assumed a small amount of oil was used for stir-frying the tofu and vegetables."
+      },
+      "predicted": {
+        "grams": 245,
+        "kcal": 248,
+        "protein_g": 11.6,
+        "carbs_g": 30,
+        "fat_g": 10.1
+      },
+      "scores": {
+        "kcal_error": 25.5,
+        "kcal_abs_error": 25.5,
+        "kcal_pct_error": 11.46067415730337,
+        "close": true,
+        "protein_g_abs_error": 2.299999999999999,
+        "carbs_g_abs_error": 16.799999999999997,
+        "fat_g_abs_error": 9.4
+      }
+    },
+    {
+      "id": "dish_1558376306",
+      "truth": {
+        "kcal": 372.2,
+        "grams": 108.0,
+        "protein_g": 20.8,
+        "carbs_g": 4.5,
+        "fat_g": 29.5
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1630,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "sliced cooked sausage",
+            "grams": 120,
+            "kcal": 380,
+            "protein_g": 14,
+            "carbs_g": 2,
+            "fat_g": 35,
+            "confidence": "medium"
+          }
+        ],
+        "notes": "Assumed pork or mixed meat sausage slices."
+      },
+      "predicted": {
+        "grams": 120,
+        "kcal": 380,
+        "protein_g": 14,
+        "carbs_g": 2,
+        "fat_g": 35
+      },
+      "scores": {
+        "kcal_error": 7.800000000000011,
+        "kcal_abs_error": 7.800000000000011,
+        "kcal_pct_error": 2.095647501343367,
+        "close": true,
+        "protein_g_abs_error": 6.800000000000001,
+        "carbs_g_abs_error": 2.5,
+        "fat_g_abs_error": 5.5
+      }
+    },
+    {
+      "id": "dish_1565894889",
+      "truth": {
+        "kcal": 257.8,
+        "grams": 74.0,
+        "protein_g": 6.6,
+        "carbs_g": 33.3,
+        "fat_g": 11.2
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1466,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "pizza slice",
+            "grams": 80,
+            "kcal": 210,
+            "protein_g": 9,
+            "carbs_g": 22,
+            "fat_g": 9,
+            "confidence": "medium"
+          },
+          {
+            "name": "chocolate chip cookie",
+            "grams": 30,
+            "kcal": 140,
+            "protein_g": 1,
+            "carbs_g": 19,
+            "fat_g": 7,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed a standard cheese pizza slice and a chocolate chip cookie."
+      },
+      "predicted": {
+        "grams": 110,
+        "kcal": 350,
+        "protein_g": 10,
+        "carbs_g": 41,
+        "fat_g": 16
+      },
+      "scores": {
+        "kcal_error": 92.19999999999999,
+        "kcal_abs_error": 92.19999999999999,
+        "kcal_pct_error": 35.76415826221877,
+        "close": false,
+        "protein_g_abs_error": 3.4000000000000004,
+        "carbs_g_abs_error": 7.700000000000003,
+        "fat_g_abs_error": 4.800000000000001
+      }
+    },
+    {
+      "id": "dish_1563565289",
+      "truth": {
+        "kcal": 93.4,
+        "grams": 88.0,
+        "protein_g": 2.7,
+        "carbs_g": 19.4,
+        "fat_g": 2.1
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1602,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "boiled corn on the cob",
+            "grams": 70,
+            "kcal": 65,
+            "protein_g": 2.2,
+            "carbs_g": 14.5,
+            "fat_g": 1,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed two small pieces of boiled sweet corn."
+      },
+      "predicted": {
+        "grams": 70,
+        "kcal": 65,
+        "protein_g": 2.2,
+        "carbs_g": 14.5,
+        "fat_g": 1
+      },
+      "scores": {
+        "kcal_error": -28.400000000000006,
+        "kcal_abs_error": 28.400000000000006,
+        "kcal_pct_error": 30.406852248394006,
+        "close": false,
+        "protein_g_abs_error": 0.5,
+        "carbs_g_abs_error": 4.899999999999999,
+        "fat_g_abs_error": 1.1
+      }
+    },
+    {
+      "id": "dish_1558376984",
+      "truth": {
+        "kcal": 671.7,
+        "grams": 350.0,
+        "protein_g": 45.4,
+        "carbs_g": 30.2,
+        "fat_g": 45.6
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2306,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "whole apple",
+            "grams": 150,
+            "kcal": 78,
+            "protein_g": 0.4,
+            "carbs_g": 20.6,
+            "fat_g": 0.3,
+            "confidence": "high"
+          },
+          {
+            "name": "almonds",
+            "grams": 30,
+            "kcal": 174,
+            "protein_g": 6,
+            "carbs_g": 6,
+            "fat_g": 15,
+            "confidence": "high"
+          },
+          {
+            "name": "red grapes",
+            "grams": 60,
+            "kcal": 41,
+            "protein_g": 0.4,
+            "carbs_g": 10.7,
+            "fat_g": 0.1,
+            "confidence": "high"
+          },
+          {
+            "name": "cooked sausage slices",
+            "grams": 80,
+            "kcal": 240,
+            "protein_g": 10,
+            "carbs_g": 2,
+            "fat_g": 21,
+            "confidence": "medium"
+          },
+          {
+            "name": "spinach salad",
+            "grams": 20,
+            "kcal": 5,
+            "protein_g": 0.6,
+            "carbs_g": 0.7,
+            "fat_g": 0.1,
+            "confidence": "medium"
+          }
+        ],
+        "notes": "Assumed standard pork sausage and raw spinach leaves."
+      },
+      "predicted": {
+        "grams": 340,
+        "kcal": 538,
+        "protein_g": 17.4,
+        "carbs_g": 40.0,
+        "fat_g": 36.5
+      },
+      "scores": {
+        "kcal_error": -133.70000000000005,
+        "kcal_abs_error": 133.70000000000005,
+        "kcal_pct_error": 19.904719368765825,
+        "close": true,
+        "protein_g_abs_error": 28.0,
+        "carbs_g_abs_error": 9.8,
+        "fat_g_abs_error": 9.100000000000001
+      }
+    },
+    {
+      "id": "dish_1558110478",
+      "truth": {
+        "kcal": 205.4,
+        "grams": 161.0,
+        "protein_g": 8.3,
+        "carbs_g": 27.9,
+        "fat_g": 6.8
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 2410,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "scrambled eggs",
+            "grams": 60,
+            "kcal": 88,
+            "protein_g": 6,
+            "carbs_g": 1,
+            "fat_g": 6,
+            "confidence": "high"
+          },
+          {
+            "name": "cooked sweet potato",
+            "grams": 90,
+            "kcal": 78,
+            "protein_g": 1,
+            "carbs_g": 18,
+            "fat_g": 0,
+            "confidence": "high"
+          },
+          {
+            "name": "cooked bacon",
+            "grams": 25,
+            "kcal": 135,
+            "protein_g": 9,
+            "carbs_g": 0,
+            "fat_g": 11,
+            "confidence": "high"
+          },
+          {
+            "name": "mixed berries",
+            "grams": 50,
+            "kcal": 29,
+            "protein_g": 1,
+            "carbs_g": 7,
+            "fat_g": 0,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed eggs were cooked with a minimal amount of butter or oil."
+      },
+      "predicted": {
+        "grams": 225,
+        "kcal": 330,
+        "protein_g": 17,
+        "carbs_g": 26,
+        "fat_g": 17
+      },
+      "scores": {
+        "kcal_error": 124.6,
+        "kcal_abs_error": 124.6,
+        "kcal_pct_error": 60.66212268743914,
+        "close": false,
+        "protein_g_abs_error": 8.7,
+        "carbs_g_abs_error": 1.8999999999999986,
+        "fat_g_abs_error": 10.2
+      }
+    },
+    {
+      "id": "dish_1563984199",
+      "truth": {
+        "kcal": 322.7,
+        "grams": 670.0,
+        "protein_g": 48.6,
+        "carbs_g": 22.2,
+        "fat_g": 1.3
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1969,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "fresh mozzarella cheese",
+            "grams": 180,
+            "kcal": 504,
+            "protein_g": 32.4,
+            "carbs_g": 3.8,
+            "fat_g": 39.6,
+            "confidence": "high"
+          },
+          {
+            "name": "cantaloupe melon",
+            "grams": 70,
+            "kcal": 24,
+            "protein_g": 0.6,
+            "carbs_g": 5.7,
+            "fat_g": 0.1,
+            "confidence": "high"
+          },
+          {
+            "name": "pineapple",
+            "grams": 50,
+            "kcal": 25,
+            "protein_g": 0.3,
+            "carbs_g": 6.5,
+            "fat_g": 0.1,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed standard whole milk mozzarella cheese and fresh fruit."
+      },
+      "predicted": {
+        "grams": 300,
+        "kcal": 553,
+        "protein_g": 33.3,
+        "carbs_g": 16.0,
+        "fat_g": 39.800000000000004
+      },
+      "scores": {
+        "kcal_error": 230.3,
+        "kcal_abs_error": 230.3,
+        "kcal_pct_error": 71.36659436008678,
+        "close": false,
+        "protein_g_abs_error": 15.300000000000004,
+        "carbs_g_abs_error": 6.199999999999999,
+        "fat_g_abs_error": 38.50000000000001
+      }
+    },
+    {
+      "id": "dish_1562691000",
+      "truth": {
+        "kcal": 326.6,
+        "grams": 349.0,
+        "protein_g": 16.6,
+        "carbs_g": 27.2,
+        "fat_g": 17.6
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "meal",
+      "ms": 1885,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "scrambled eggs",
+            "grams": 150,
+            "kcal": 220,
+            "protein_g": 15,
+            "carbs_g": 2,
+            "fat_g": 16,
+            "confidence": "high"
+          },
+          {
+            "name": "roasted broccoli",
+            "grams": 80,
+            "kcal": 45,
+            "protein_g": 2,
+            "carbs_g": 7,
+            "fat_g": 1,
+            "confidence": "high"
+          },
+          {
+            "name": "pineapple chunks",
+            "grams": 100,
+            "kcal": 50,
+            "protein_g": 0.5,
+            "carbs_g": 13,
+            "fat_g": 0.1,
+            "confidence": "high"
+          },
+          {
+            "name": "strawberries and blueberries",
+            "grams": 70,
+            "kcal": 35,
+            "protein_g": 0.8,
+            "carbs_g": 8,
+            "fat_g": 0.3,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Assumed eggs were cooked with a small amount of oil or butter."
+      },
+      "predicted": {
+        "grams": 400,
+        "kcal": 350,
+        "protein_g": 18.3,
+        "carbs_g": 30,
+        "fat_g": 17.400000000000002
+      },
+      "scores": {
+        "kcal_error": 23.399999999999977,
+        "kcal_abs_error": 23.399999999999977,
+        "kcal_pct_error": 7.1647274954072175,
+        "close": true,
+        "protein_g_abs_error": 1.6999999999999993,
+        "carbs_g_abs_error": 2.8000000000000007,
+        "fat_g_abs_error": 0.1999999999999993
+      }
+    }
+  ]
+}
