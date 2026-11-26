@@ -58,6 +58,10 @@ Phone browser                       Next.js on Vercel                     Extern
 
 `npm test` runs the suite, and CI runs it on every pull request. Tests cover the time zone and nutrition logic, validation, redirect safety, the AI layer, the photo route and the main forms. AI providers are always faked, so a test run makes no real AI calls and costs nothing. Async Server Components and row-level security aren't covered yet: they need browser tests and a local database.
 
+## Accuracy eval
+
+`eval/` measures how close the real AI's numbers are to known values, using generated nutrition labels and weighed meals from the Nutrition5k dataset. It runs the app's own analysis code and writes a report per run. It makes real AI calls, so it's run by hand, not in CI. See [eval/README.md](eval/README.md).
+
 ## Project structure
 
 ```
@@ -82,7 +86,7 @@ lib/
   env.ts             validated environment variables
 types/database.ts    typed Supabase schema
 supabase/migrations/ SQL migrations (tables, RLS, triggers)
-eval/                reserved for a future Python accuracy evaluation
+eval/                accuracy eval: datasets, runner and reports (see eval/README.md)
 public/icons/        app icons (regenerate with npm run icons)
 scripts/             generate-icons.mjs
 __tests__/           Vitest tests: lib/, ai/, api/ and components/
@@ -184,5 +188,6 @@ Every push to `main` then deploys to production, and every pull request gets a p
 - [x] **Phase 5:** nutrition label reading
 - [x] **Phase 6:** macro goals
 - [x] **Phase 7:** automated tests (Vitest), run in CI
+- [x] **Phase 8:** accuracy eval against generated labels and Nutrition5k
 
-**Later:** USDA nutrition database lookup, and a Python accuracy evaluation in `/eval`.
+**Later:** USDA nutrition database lookup.
