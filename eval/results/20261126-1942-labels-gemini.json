@@ -1,0 +1,961 @@
+{
+  "meta": {
+    "dataset": "labels",
+    "started": "2026-11-26 19:42 UTC",
+    "commit": "cf1f3d5",
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite"
+  },
+  "summary": {
+    "images": 24,
+    "answered": 24,
+    "failures": {},
+    "median_seconds": 2.0775,
+    "all_correct_rate": 1.0,
+    "field_correct_rate": {
+      "grams": 1.0,
+      "kcal": 1.0,
+      "protein_g": 1.0,
+      "carbs_g": 1.0,
+      "fat_g": 1.0
+    }
+  },
+  "results": [
+    {
+      "id": "us-granola",
+      "truth": {
+        "grams": 55,
+        "kcal": 240,
+        "protein_g": 6,
+        "carbs_g": 34,
+        "fat_g": 9
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 3553,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Oat Crunch Granola",
+            "grams": 55,
+            "kcal": 240,
+            "protein_g": 6,
+            "carbs_g": 34,
+            "fat_g": 9,
+            "confidence": "high"
+          }
+        ],
+        "notes": ""
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "us-yogurt",
+      "truth": {
+        "grams": 170,
+        "kcal": 100,
+        "protein_g": 18,
+        "carbs_g": 6,
+        "fat_g": 0.5
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 5226,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Plain Greek Yogurt",
+            "grams": 170,
+            "kcal": 100,
+            "protein_g": 18,
+            "carbs_g": 6,
+            "fat_g": 0.5,
+            "confidence": "high"
+          }
+        ],
+        "notes": ""
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "us-chips",
+      "truth": {
+        "grams": 28,
+        "kcal": 160,
+        "protein_g": 2,
+        "carbs_g": 15,
+        "fat_g": 10
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 3997,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Sea Salt Potato Chips",
+            "grams": 28,
+            "kcal": 160,
+            "protein_g": 2,
+            "carbs_g": 15,
+            "fat_g": 10,
+            "confidence": "high"
+          }
+        ],
+        "notes": ""
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "us-peanut-butter",
+      "truth": {
+        "grams": 32,
+        "kcal": 190,
+        "protein_g": 7,
+        "carbs_g": 7,
+        "fat_g": 16
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 2250,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Creamy Peanut Butter",
+            "grams": 32,
+            "kcal": 190,
+            "protein_g": 7,
+            "carbs_g": 7,
+            "fat_g": 16,
+            "confidence": "high"
+          }
+        ],
+        "notes": ""
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "us-soda",
+      "truth": {
+        "grams": 355,
+        "kcal": 140,
+        "protein_g": 0.5,
+        "carbs_g": 39,
+        "fat_g": 0.5
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 4928,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Cola",
+            "grams": 355,
+            "kcal": 140,
+            "protein_g": 0.5,
+            "carbs_g": 39,
+            "fat_g": 0.5,
+            "confidence": "high"
+          }
+        ],
+        "notes": ""
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "us-oatmeal-bar",
+      "truth": {
+        "grams": 40,
+        "kcal": 170,
+        "protein_g": 3,
+        "carbs_g": 26,
+        "fat_g": 6
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 2140,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Chewy Oat Bar",
+            "grams": 40,
+            "kcal": 170,
+            "protein_g": 3,
+            "carbs_g": 26,
+            "fat_g": 6,
+            "confidence": "high"
+          }
+        ],
+        "notes": ""
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "us-pasta",
+      "truth": {
+        "grams": 56,
+        "kcal": 200,
+        "protein_g": 7,
+        "carbs_g": 42,
+        "fat_g": 1
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 4386,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Spaghetti",
+            "grams": 56,
+            "kcal": 200,
+            "protein_g": 7,
+            "carbs_g": 42,
+            "fat_g": 1,
+            "confidence": "high"
+          }
+        ],
+        "notes": ""
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "us-cheese",
+      "truth": {
+        "grams": 21,
+        "kcal": 80,
+        "protein_g": 5,
+        "carbs_g": 0.5,
+        "fat_g": 6
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 1801,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Cheddar Slices",
+            "grams": 21,
+            "kcal": 80,
+            "protein_g": 5,
+            "carbs_g": 0.5,
+            "fat_g": 6,
+            "confidence": "high"
+          }
+        ],
+        "notes": ""
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "eu-bread",
+      "truth": {
+        "grams": 100,
+        "kcal": 247,
+        "protein_g": 13,
+        "carbs_g": 41,
+        "fat_g": 3.4
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 2784,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Wholemeal Bread",
+            "grams": 100,
+            "kcal": 247,
+            "protein_g": 13,
+            "carbs_g": 41,
+            "fat_g": 3.4,
+            "confidence": "high"
+          }
+        ],
+        "notes": ""
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "eu-chocolate",
+      "truth": {
+        "grams": 100,
+        "kcal": 579,
+        "protein_g": 8,
+        "carbs_g": 33,
+        "fat_g": 42
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 4502,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Dark Chocolate 70%",
+            "grams": 100,
+            "kcal": 579,
+            "protein_g": 8,
+            "carbs_g": 33,
+            "fat_g": 42,
+            "confidence": "high"
+          }
+        ],
+        "notes": ""
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "eu-milk",
+      "truth": {
+        "grams": 100,
+        "kcal": 47,
+        "protein_g": 3.5,
+        "carbs_g": 4.8,
+        "fat_g": 1.7
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 2817,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Semi-Skimmed Milk",
+            "grams": 100,
+            "kcal": 47,
+            "protein_g": 3.5,
+            "carbs_g": 4.8,
+            "fat_g": 1.7,
+            "confidence": "high"
+          }
+        ],
+        "notes": ""
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "eu-rice",
+      "truth": {
+        "grams": 100,
+        "kcal": 356,
+        "protein_g": 8.5,
+        "carbs_g": 78,
+        "fat_g": 0.5
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 1246,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Basmati Rice",
+            "grams": 100,
+            "kcal": 356,
+            "protein_g": 8.5,
+            "carbs_g": 78,
+            "fat_g": 0.5,
+            "confidence": "high"
+          }
+        ],
+        "notes": ""
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "dual-cereal",
+      "truth": {
+        "grams": 30,
+        "kcal": 113,
+        "protein_g": 2.1,
+        "carbs_g": 25.2,
+        "fat_g": 0.5
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 2992,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Corn Flakes",
+            "grams": 30,
+            "kcal": 113,
+            "protein_g": 2.1,
+            "carbs_g": 25.2,
+            "fat_g": 0.5,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Used per-serving values for 30 g. Fat was listed as less than 1 g, converted to 0.5 g."
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "dual-biscuits",
+      "truth": {
+        "grams": 15,
+        "kcal": 72,
+        "protein_g": 1.1,
+        "carbs_g": 9.5,
+        "fat_g": 3.2
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 1684,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Digestive Biscuits",
+            "grams": 15,
+            "kcal": 72,
+            "protein_g": 1.1,
+            "carbs_g": 9.5,
+            "fat_g": 3.2,
+            "confidence": "high"
+          }
+        ],
+        "notes": ""
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "dual-juice",
+      "truth": {
+        "grams": 200,
+        "kcal": 90,
+        "protein_g": 1.4,
+        "carbs_g": 20,
+        "fat_g": 1
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 1637,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Orange Juice",
+            "grams": 200,
+            "kcal": 90,
+            "protein_g": 1.4,
+            "carbs_g": 20,
+            "fat_g": 1,
+            "confidence": "high"
+          }
+        ],
+        "notes": ""
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "dual-muesli",
+      "truth": {
+        "grams": 45,
+        "kcal": 163,
+        "protein_g": 4.1,
+        "carbs_g": 27.9,
+        "fat_g": 2.7
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 1347,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Fruit Muesli",
+            "grams": 45,
+            "kcal": 163,
+            "protein_g": 4.1,
+            "carbs_g": 27.9,
+            "fat_g": 2.7,
+            "confidence": "high"
+          }
+        ],
+        "notes": ""
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "kj-crackers",
+      "truth": {
+        "grams": 100,
+        "kcal": 394.4,
+        "protein_g": 7,
+        "carbs_g": 80,
+        "fat_g": 3
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 1302,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Rice Crackers",
+            "grams": 100,
+            "kcal": 394,
+            "protein_g": 7,
+            "carbs_g": 80,
+            "fat_g": 3,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Energy was given in kJ and converted to kcal."
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "kj-hummus",
+      "truth": {
+        "grams": 100,
+        "kcal": 282,
+        "protein_g": 7,
+        "carbs_g": 9,
+        "fat_g": 24
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 1625,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Classic Hummus",
+            "grams": 100,
+            "kcal": 282,
+            "protein_g": 7,
+            "carbs_g": 9,
+            "fat_g": 24,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Energy was converted from kJ to kcal."
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "tilted-granola",
+      "truth": {
+        "grams": 55,
+        "kcal": 240,
+        "protein_g": 6,
+        "carbs_g": 34,
+        "fat_g": 9
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 1762,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Oat Crunch Granola",
+            "grams": 55,
+            "kcal": 240,
+            "protein_g": 6,
+            "carbs_g": 34,
+            "fat_g": 9,
+            "confidence": "high"
+          }
+        ],
+        "notes": ""
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "tilted-bread",
+      "truth": {
+        "grams": 100,
+        "kcal": 247,
+        "protein_g": 13,
+        "carbs_g": 41,
+        "fat_g": 3.4
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 1772,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Wholemeal Bread",
+            "grams": 100,
+            "kcal": 247,
+            "protein_g": 13,
+            "carbs_g": 41,
+            "fat_g": 3.4,
+            "confidence": "high"
+          }
+        ],
+        "notes": ""
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "faint-chips",
+      "truth": {
+        "grams": 28,
+        "kcal": 160,
+        "protein_g": 2,
+        "carbs_g": 15,
+        "fat_g": 10
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 1667,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Sea Salt Potato Chips",
+            "grams": 28,
+            "kcal": 160,
+            "protein_g": 2,
+            "carbs_g": 15,
+            "fat_g": 10,
+            "confidence": "high"
+          }
+        ],
+        "notes": ""
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "faint-cereal",
+      "truth": {
+        "grams": 30,
+        "kcal": 113,
+        "protein_g": 2.1,
+        "carbs_g": 25.2,
+        "fat_g": 0.5
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 2015,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Corn Flakes",
+            "grams": 30,
+            "kcal": 113,
+            "protein_g": 2.1,
+            "carbs_g": 25.2,
+            "fat_g": 0.5,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Used per-serving (30 g) values. Fat read as less than 1 g was converted to 0.5 g."
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "small-yogurt",
+      "truth": {
+        "grams": 170,
+        "kcal": 100,
+        "protein_g": 18,
+        "carbs_g": 6,
+        "fat_g": 0.5
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 1588,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Plain Greek Yogurt",
+            "grams": 170,
+            "kcal": 100,
+            "protein_g": 18,
+            "carbs_g": 6,
+            "fat_g": 0.5,
+            "confidence": "high"
+          }
+        ],
+        "notes": ""
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    },
+    {
+      "id": "small-crackers",
+      "truth": {
+        "grams": 100,
+        "kcal": 394.4,
+        "protein_g": 7,
+        "carbs_g": 80,
+        "fat_g": 3
+      },
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "mode": "label",
+      "ms": 2266,
+      "ok": true,
+      "analysis": {
+        "items": [
+          {
+            "name": "Rice Crackers",
+            "grams": 100,
+            "kcal": 394,
+            "protein_g": 7,
+            "carbs_g": 80,
+            "fat_g": 3,
+            "confidence": "high"
+          }
+        ],
+        "notes": "Energy was calculated from 1650 kJ."
+      },
+      "scores": {
+        "fields": {
+          "grams": true,
+          "kcal": true,
+          "protein_g": true,
+          "carbs_g": true,
+          "fat_g": true
+        },
+        "all_correct": true
+      }
+    }
+  ]
+}
